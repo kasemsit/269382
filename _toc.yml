@@ -8,5 +8,3 @@ options:  # The options key will be applied to all chapters, but not sub-section
 chapters:
 - file: lecture01
 - file: lecture02
-#- file: notebooks
-#- file: markdown-notebooks

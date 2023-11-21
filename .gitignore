@@ -1,3 +1,9 @@
+# Temporary datasets/outputs
+notebook/data.xlsx
+notebook/ggez.csv
+notebook/lnwzaa55+.csv
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

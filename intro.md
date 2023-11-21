@@ -1,4 +1,4 @@
-# 269382 Data Analytics for Non-IT Majors
+# 269382 Data Analytics for Non-IT
 
 
 ```{tableofcontents}

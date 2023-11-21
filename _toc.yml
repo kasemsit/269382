@@ -6,5 +6,5 @@ root: intro
 options:  # The options key will be applied to all chapters, but not sub-sections
   numbered: True
 chapters:
-- file: lecture01
-- file: lecture02
+- file: notebook/lecture01.ipynb
+- file: notebook/lecture02.ipynb

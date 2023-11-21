@@ -2,4 +2,6 @@ jupyter-book
 matplotlib
 numpy
 pandas
+openpyxl
 plotly
+jupytext

@@ -32,10 +32,8 @@ repository:
 html:
   use_issues_button: false
   use_repository_button: false
-  #announcement: "Version 0.1"
+  announcement: "กำลังทะยอยอัพเดท..."
   
-
-
 launch_buttons:
   colab_url: "https://colab.research.google.com"
   notebook_interface: "jupyterlab" 

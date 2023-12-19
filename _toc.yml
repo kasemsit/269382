@@ -8,3 +8,4 @@ options:  # The options key will be applied to all chapters, but not sub-section
 chapters:
 - file: notebook/lecture01.ipynb
 - file: notebook/lecture02.ipynb
+- file: notebook/lecture03.ipynb

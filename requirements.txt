@@ -6,4 +6,4 @@ openpyxl
 plotly
 jupytext
 ghp-import
-ghp-import
+

@@ -168,10 +168,15 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">เนื้อหา</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture01.html">1. สำรวจชุดข้อมูลทิป</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture02.html">2. สำรวจชุดข้อมูลขายของออนไลน์</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture03.html">3. สำรวจชุดข้อมูลดอกไอริส</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebook/appendix01_gdrive.html">การใช้ Google Drive กับ Google Colab</a></li>
 </ul>
 
     </div>
@@ -321,7 +326,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">คำนำ</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">สารบัญ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">สารบัญ</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -342,10 +349,17 @@ document.write(`
 <section id="id2">
 <h2>สารบัญ<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">เนื้อหา</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture01.html">1. สำรวจชุดข้อมูลทิป</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture02.html">2. สำรวจชุดข้อมูลขายของออนไลน์</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebook/lecture03.html">3. สำรวจชุดข้อมูลดอกไอริส</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebook/appendix01_gdrive.html">การใช้ Google Drive กับ Google Colab</a></li>
 </ul>
 </div>
 </section>
@@ -406,7 +420,9 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">คำนำ</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">สารบัญ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">สารบัญ</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
 </ul>
   </nav></div>
 

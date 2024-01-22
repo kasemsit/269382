@@ -6,4 +6,5 @@ openpyxl
 plotly
 jupytext
 ghp-import
-
+scikit-learn
+statsmodels

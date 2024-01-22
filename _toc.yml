@@ -9,7 +9,7 @@ parts:
     chapters:
     - file: notebook/lecture01.ipynb
     - file: notebook/lecture02.ipynb
-    - file: notebook/lecture03.ipynb
+    - file: notebook/lecture03.ipynb    
     - file: notebook/lecture04-1.ipynb
     - file: notebook/lecture04-2.ipynb
   - caption: ภาคผนวก

@@ -8,5 +8,6 @@ clean:
 	rm -rf notebook/iris_data
 	rm -f notebook/myapple_1.csv 
 	rm -f notebook/myapple_2.csv
+	rm -rf _build/
 deploy:
 	ghp-import -n -p -f _build/html

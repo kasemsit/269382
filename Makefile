@@ -9,5 +9,6 @@ clean:
 	rm -f notebook/myapple_1.csv 
 	rm -f notebook/myapple_2.csv
 	rm -rf _build/
+	jupyter-book clean ./ --all
 deploy:
 	ghp-import -n -p -f _build/html

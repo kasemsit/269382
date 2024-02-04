@@ -1,0 +1,1584 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>7. ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal &#8212; 269382 Data Analytics for Non-IT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/lecture06-1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="การใช้ Google Drive กับ Google Colab" href="appendix01_gdrive.html" />
+    <link rel="prev" title="6. ปัญหาการจำแนกประเภทดอกไอริส" href="lecture05.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="ค้นหาคำในเล่ม..."
+         aria-label="ค้นหาคำในเล่ม..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="269382 Data Analytics for Non-IT - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="269382 Data Analytics for Non-IT - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    269382 Data Analytics for Non-IT
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">เนื้อหา</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture01.html">1. สำรวจชุดข้อมูลทิป</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture02.html">2. สำรวจชุดข้อมูลขายของออนไลน์</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture03.html">3. สำรวจชุดข้อมูลดอกไอริส</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture04-1.html">4. การทำนายความยาวกลีบเลี้ยงด้วยชุดข้อมูลดอกไอริส</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture04-2.html">5. สมมติฐานของ Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture05.html">6. ปัญหาการจำแนกประเภทดอกไอริส</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix01_gdrive.html">การใช้ Google Drive กับ Google Colab</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/kasemsit/269382/blob/master/notebook/lecture06-1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebook/lecture06-1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> สารบัญ </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1. การแปลงข้อมูลให้เป็นตัวเลข</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.1. การแปลงข้อมูลให้เป็นตัวเลข 0, 1, 2, …</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onehotencoder">7.1.2. การแปลงข้อมูลให้เป็นตัวเลขโดยใช้ OneHotEncoder</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinalencoder-onehotencoder">7.2. การใช้ OrdinalEncoder และ OneHotEncoder</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="category-ordinal">
+<h1><span class="section-number">7. </span>ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal<a class="headerlink" href="#category-ordinal" title="Permalink to this heading">#</a></h1>
+<p><strong>จุดประสงค์การเรียนรู้</strong></p>
+<ol class="arabic simple">
+<li><p>ทราบว่าประเภทข้อมูลมี 3 ประเภทคือ numerical, categorical และ ordinal และทราบความแตกต่างของข้อมูลแต่ละชนิด</p></li>
+<li><p>สามารถแปลงข้อมูลประเภท categorical และ ordinal ให้เป็นตัวเลขได้ โดยใช้เครื่องมือในการแปลงของ Scikit-learn ได้แก่ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>, <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> และ <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></p></li>
+</ol>
+<p>ในบทที่ผ่านมา ข้อมูลที่เป็นตัวเลข (Numerical data) เช่นข้อมูล sepal length, sepal width, petal length, และ petal width ของดอกไอริส สามารถใช้ในการเทรนโมเดลได้สะดวก เนื่องจากตัวโมเดลก็คือสมการทางคณิตศาสตร์ จึงเป็นธรรมชาติที่จะนำไปบวกลบค่าเหล่านั้นได้</p>
+<p>อย่างไรก็ตาม ในส่วนของข้อมูลสายพันธุ์ดอกไอริส (<code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code>, <code class="docutils literal notranslate"><span class="pre">Iris-virginica</span></code>, และ<code class="docutils literal notranslate"><span class="pre">Iris-versicolor</span></code>) จัดเป็นข้อมูลประเภท categorical (หรือเรียกอีกอย่างว่า nominal)  ซึ่งโดยทั่วไป ข้อมูลประเภท categorical นี้ เป็นข้อมูลที่<strong>ไม่มีลำดับของค่า</strong> มัน มักถูกเก็บค่าในรูป string อย่างเช่นกรณีของสายพันธุ์ดอกที่เป็นไปได้ 3 แบบ แต่ก็มีบ่อยครั้งที่พบเห็นเป็นตัวเลข เช่นเลขห้อง 34, 201, หรือ 555 เป็นต้น เนื่องจากค่าของเลขห้องไม่มีลำดับมากน้อย</p>
+<p>นอกจากข้อมูลประเภท numerical และข้อมูลประเภท categorical แล้ว ยังมีข้อมูลอีกประเภทหนึ่งคือ ข้อมูลประเภท ordinal ที่มีลักษณะคล้าย ๆ กับประเภท categorical แต่ค่าของมันมีลำดับมาเกี่ยวข้อง ยกตัวอย่างเช่น ข้อมูลวุฒิการศึกษา ระดับประถม มัธยม มหาวิทยาลัย ก็อาจเรียงจากน้อยไปมากได้เป็น ประถม &lt; มัธยม &lt; มหาวิทยาลัย เป็นต้น</p>
+<p>สำหรับตัวอย่างของข้อมูล ordinal เพิ่มเติม ให้พิจารณาชุดข้อมูล <a class="reference external" href="https://archive.ics.uci.edu/dataset/19/car+evaluation">Car Evaluation</a> ซึ่งเป็นชุดข้อมูลเกี่ยวกับการประเมินค่ารถ</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ucimlrepo
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ucimlrepo
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ucimlrepo-0.0.3-py3-none-any.whl.metadata (5.2 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ucimlrepo-0.0.3-py3-none-any.whl (7.0 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ucimlrepo
+Successfully installed ucimlrepo-0.0.3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.3.2</span> -&gt; <span class=" -Color -Color-Green">24.0</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ucimlrepo</span> <span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+<span class="n">car_evaluation</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>   <span class="c1"># fetch dataset</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">car_evaluation</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># data (as pandas dataframes)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">car_evaluation</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
+
+<span class="c1"># บรรทัดด้านล่างนี้ แก้ค่า 5more ในคอลัมน์ doors เพียงเพื่อจะใช้เป็นตัวอย่างของ Numerical data</span>
+<span class="n">X</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;doors&#39;</span><span class="p">:</span><span class="s1">&#39;5more&#39;</span><span class="p">},</span> <span class="mi">5</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;doors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;doors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ชุดข้อมูล Car Evaluation มีตัวแปรดังต่อไปนี้</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>คอลัมน์</p></th>
+<th class="head text-left"><p>ความหมาย</p></th>
+<th class="head text-left"><p>ค่าที่เป็นไปได้</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>buying</p></td>
+<td class="text-left"><p>ราคาซื้อ</p></td>
+<td class="text-left"><p>vhigh, high, med, low</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>maint</p></td>
+<td class="text-left"><p>ค่าบำรุงรักษา</p></td>
+<td class="text-left"><p>vhigh, high, med, low</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>doors</p></td>
+<td class="text-left"><p>จำนวนประตูรถ</p></td>
+<td class="text-left"><p>2, 3, 4, 5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>persons</p></td>
+<td class="text-left"><p>จำนวนผู้โดยสาร</p></td>
+<td class="text-left"><p>2, 4, more</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>lug_boot</p></td>
+<td class="text-left"><p>ความจุท้ายรถ</p></td>
+<td class="text-left"><p>small, med, big</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>safety</p></td>
+<td class="text-left"><p>ประมาณการความปลอดภัยของรถ</p></td>
+<td class="text-left"><p>low, med, high</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>class</p></td>
+<td class="text-left"><p>ระดับการประเมินซึ่งแสดงถึง Car’s Acceptability</p></td>
+<td class="text-left"><p>unacceptable, acceptable, good, very good</p></td>
+</tr>
+</tbody>
+</table>
+<p>จากตาราง จะเห็นว่า เป็นข้อมูลประเภท ordinal ทั้งหมดทุกคอลัมน์ ยกเว้น คอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code> ที่เป็นประเภท numerical</p>
+<section id="id1">
+<h2><span class="section-number">7.1. </span>การแปลงข้อมูลให้เป็นตัวเลข<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>สามารถทำได้ 2 แบบคือ</p>
+<ol class="arabic simple">
+<li><p>แปลงเป็นตัวเลข 0, 1, 2, …</p></li>
+<li><p>แปลงด้วยตัวแปร dummy หรือเรียกว่าการแปลงแบบ one-hot</p></li>
+</ol>
+<section id="id2">
+<h3><span class="section-number">7.1.1. </span>การแปลงข้อมูลให้เป็นตัวเลข 0, 1, 2, …<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>ทำโดยใช้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html">(คู่มือ)</a> ซึ่งการทำงานจะเหมือนกับ <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> ที่เคยใช้ในคาบที่ผ่านมา เพียงแต่ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> แปลงค่าได้ทีละหลายคอลัมน์พร้อมกัน ส่วน <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> แปลงได้เพียงทีละคอลัมน์</p>
+<p>รูปแบบการใช้งาน <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> เป็นดังนี้</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+<span class="nb">ord</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>   <span class="c1"># สร้างตัวแปลงเปล่า ๆ ขึ้นมา</span>
+<span class="nb">ord</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>               <span class="c1"># ส่งข้อมูลให้ตัวแปลงเพื่อประเมิน</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="nb">ord</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># หรือใช้ X_new = orden.fit_transform(X) จบในตัวเดียว</span>
+
+</pre></div>
+</div>
+<p>นอกจากนี้ ในการทำให้ Scikit-learn ให้ผลลัพธ์เป็น Pandas แทนที่จะเป็น Numpy ก็อาจใช้คำสั่ง</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+<span class="nb">ord</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="nb">ord</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>  <span class="c1"># บรรทัดนี้ เป็นการระบุให้ Scikit-learn ให้ผลลัพธ์เป็น DataFrame ของ Pandas แทนที่จะเป็น Numpy</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="nb">ord</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>buying</th>
+      <th>maint</th>
+      <th>doors</th>
+      <th>persons</th>
+      <th>lug_boot</th>
+      <th>safety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1723</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1724</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1727</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1728 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>จากผลลัพธ์ที่ได้ ค่าในแต่ละคอลัมน์ได้ถูกแทนค่าเป็นตัวเลข โดยเริ่มนับตามลำดับจาก 0, 1, 2, … ตามลำดับ ตามจำนวนค่าที่เป็นไปได้ของแต่ละคอลัมน์ ซึ่งเราอาจย้อนดูว่า ตัวเลขแต่ละตัวมีความหมายว่าอย่างไร โดยดูจาก</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="o">.</span><span class="n">feature_names_in_</span>  <span class="c1"># ชื่อคอลัมน์ที่เป็นอินพุต</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;buying&#39;, &#39;maint&#39;, &#39;doors&#39;, &#39;persons&#39;, &#39;lug_boot&#39;, &#39;safety&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="o">.</span><span class="n">categories_</span> <span class="c1"># ค่าในแต่ละคอลัมน์</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;high&#39;, &#39;low&#39;, &#39;med&#39;, &#39;vhigh&#39;], dtype=object),
+ array([&#39;high&#39;, &#39;low&#39;, &#39;med&#39;, &#39;vhigh&#39;], dtype=object),
+ array([2, 3, 4, 5]),
+ array([&#39;2&#39;, &#39;4&#39;, &#39;more&#39;], dtype=object),
+ array([&#39;big&#39;, &#39;med&#39;, &#39;small&#39;], dtype=object),
+ array([&#39;high&#39;, &#39;low&#39;, &#39;med&#39;], dtype=object)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>จาก <code class="docutils literal notranslate"><span class="pre">ord.feature_names_in_</span></code> และ <code class="docutils literal notranslate"><span class="pre">ord.categories_</span></code> จะเห็นว่า คอลัมน์เช่น คอลัมน์ <code class="docutils literal notranslate"><span class="pre">buying</span></code> ที่มีค่า <code class="docutils literal notranslate"><span class="pre">'high'</span></code>, <code class="docutils literal notranslate"><span class="pre">'low'</span></code>, <code class="docutils literal notranslate"><span class="pre">'med'</span></code>, และ <code class="docutils literal notranslate"><span class="pre">'vhigh'</span></code> จะถูกแทนด้วย 0, 1, 2, และ 3 ตามลำดับของ index ของ array</p>
+<p>อย่างไรก็ตาม ตัวเลขที่กำกับไม่ถูกต้องนัก เพราะ Scikit-learn ได้กำหนดหมายเลขประจำตัวให้แต่ละค่า ตามลำดับก่อนหลังที่พบในตาราง</p>
+<p>สมมติว่า จริง ๆ แล้ว เราต้องการให้กำหนดค่า ดังนี้</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">med</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vhigh</span><span class="o">=</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>ก็สามารถทำได้ การแจ้งให้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> ได้ดังนี้</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="n">ListของListที่แสดงลำดับ</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span>
+     <span class="p">[[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="s1">&#39;vhigh&#39;</span><span class="p">],</span>  <span class="c1"># ลำดับของค่าในคอลัมน์ buying</span>
+      <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="s1">&#39;vhigh&#39;</span><span class="p">],</span>  <span class="c1"># ลำดับของค่าในคอลัมน์ maint</span>
+      <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                  <span class="c1"># ลำดับของค่าในคอลัมน์ doors</span>
+      <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;more&#39;</span><span class="p">],</span>            <span class="c1"># ลำดับของค่าในคอลัมน์ persons</span>
+      <span class="p">[</span><span class="s1">&#39;small&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;big&#39;</span><span class="p">],</span>         <span class="c1"># ลำดับของค่าในคอลัมน์ lug_boot</span>
+      <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">]]</span>          <span class="c1"># ลำดับของค่าในคอลัมน์ safety</span>
+<span class="p">)</span>
+<span class="nb">ord</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="nb">ord</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>buying</th>
+      <th>maint</th>
+      <th>doors</th>
+      <th>persons</th>
+      <th>lug_boot</th>
+      <th>safety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1723</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1724</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1727</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1728 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="o">.</span><span class="n">categories_</span>  <span class="c1"># ได้ว่า ค่าของแต่ละคอลัมน์ มีลำดับที่ถูกต้องตามต้องการ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;low&#39;, &#39;med&#39;, &#39;high&#39;, &#39;vhigh&#39;], dtype=object),
+ array([&#39;low&#39;, &#39;med&#39;, &#39;high&#39;, &#39;vhigh&#39;], dtype=object),
+ array([2, 3, 4, 5]),
+ array([&#39;2&#39;, &#39;4&#39;, &#39;more&#39;], dtype=object),
+ array([&#39;small&#39;, &#39;med&#39;, &#39;big&#39;], dtype=object),
+ array([&#39;low&#39;, &#39;med&#39;, &#39;high&#39;], dtype=object)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="onehotencoder">
+<h3><span class="section-number">7.1.2. </span>การแปลงข้อมูลให้เป็นตัวเลขโดยใช้ OneHotEncoder<a class="headerlink" href="#onehotencoder" title="Permalink to this heading">#</a></h3>
+<p>รูปแบบการใช้งาน <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> มีการใช้งานเหมือนกับ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> ดังนี้</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>   <span class="c1"># สร้างตัวแปลงเปล่า ๆ ขึ้นมา</span>
+<span class="n">one</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>               <span class="c1"># ส่งข้อมูลให้ตัวแปลงเพื่อประเมิน</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># หรือใช้ X_new = one.fit_transform(X) จบในตัวเดียว</span>
+
+</pre></div>
+</div>
+<p>โดยสิ่งที่ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> จะทำก็คือ ทำให้คอลัมน์ใด ๆ 1 คอลัมน์ เพิ่มจำนวนเป็น K คอลัมน์ ที่เป็นคอลัมน์ที่มีแต่ค่า 0 หรือ 1 เท่านั้น โดย K = จำนวนค่าที่เป็นไปได้ทั้งหมดของคอลัมน์นั้น ยกตัวอย่างเช่น</p>
+<p>พิจารณาคอลัมน์ <code class="docutils literal notranslate"><span class="pre">buying</span></code> ที่มีค่าที่เป็นไปได้คือ <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">low</span></code> , <code class="docutils literal notranslate"><span class="pre">med</span></code> และ <code class="docutils literal notranslate"><span class="pre">vhigh</span></code> (K=4) เมื่อแปลงให้แบบ one-hot ก็จะได้เป็น</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>ค่า <code class="docutils literal notranslate"><span class="pre">buying</span></code></p></th>
+<th class="head text-left"><p>รูป one-hot <code class="docutils literal notranslate"><span class="pre">[high,</span> <span class="pre">low,</span> <span class="pre">med,</span> <span class="pre">vhigh]</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">high</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[1,0,0,0]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">low</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[0,1,0,0]</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">med</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[0,0,1,0]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">vhigh</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[0,0,0,1]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>ซึ่งรูป one-hot จะมีค่าเท่ากับ 1 ได้แค่ตำแหน่งเดียวคือตำแหน่งที่ตรงกับค่าของ buying นอกจากนั้น one-hot จะเป็นศูนย์ทั้งหมด</p>
+<p>จากรูป one-hot <code class="docutils literal notranslate"><span class="pre">[high,</span> <span class="pre">low,</span> <span class="pre">med,</span> <span class="pre">vhigh]</span></code> ข้างต้น ทั้ง 4 ค่าจะถูกแตกเป็น 4 คอลัมน์แยกจากกัน โดยคอลัมน์ใหม่ จะถูกตั้งชื่อคอลัมน์ในรูป <code class="docutils literal notranslate"><span class="pre">&lt;ชื่อคอลัมน์ตั้งต้น&gt;_&lt;ชื่อของค่าที่one-hot=1&gt;</span></code> ซึ่งจะได้ผลลัพธ์ที่มีคอลัมน์ชื่อ <code class="docutils literal notranslate"><span class="pre">buying_high</span></code>,	<code class="docutils literal notranslate"><span class="pre">buying_low</span></code>,	<code class="docutils literal notranslate"><span class="pre">buying_med</span></code>,	และ <code class="docutils literal notranslate"><span class="pre">buying_vhigh</span></code></p>
+<p>ขอให้พิจารณาโค้ดด้านล่างนี้ประกอบ</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="n">onehot</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">onehot</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">onehot</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>buying_high</th>
+      <th>buying_low</th>
+      <th>buying_med</th>
+      <th>buying_vhigh</th>
+      <th>maint_high</th>
+      <th>maint_low</th>
+      <th>maint_med</th>
+      <th>maint_vhigh</th>
+      <th>doors_2</th>
+      <th>doors_3</th>
+      <th>...</th>
+      <th>doors_5</th>
+      <th>persons_2</th>
+      <th>persons_4</th>
+      <th>persons_more</th>
+      <th>lug_boot_big</th>
+      <th>lug_boot_med</th>
+      <th>lug_boot_small</th>
+      <th>safety_high</th>
+      <th>safety_low</th>
+      <th>safety_med</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1723</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1724</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1727</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1728 rows × 21 columns</p>
+</div></div></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> กำหนด <code class="docutils literal notranslate"><span class="pre">sparse_output=False</span></code> ให้ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> เพื่อความสะดวกในการแสดงผลเท่านั้น ในการใช้งานจริงที่ไม่ต้องการพิมพ์ตารางออกทางจอภาพ การใช้ <code class="docutils literal notranslate"><span class="pre">sparse_output=True</span></code> (ค่า default) จะช่วยประหยัดหน่วยความจำ เนื่องจากมีการเก็บข้อมูลในลักษณะที่เรียกว่า “Sparse matrix”</p>
+</div></blockquote>
+</section>
+</section>
+<section id="ordinalencoder-onehotencoder">
+<h2><span class="section-number">7.2. </span>การใช้ OrdinalEncoder และ OneHotEncoder<a class="headerlink" href="#ordinalencoder-onehotencoder" title="Permalink to this heading">#</a></h2>
+<p>ตัวอย่างที่ผ่านมา เป็นการแสดงวิธีการใช้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> และ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> กับทั้งชุดข้อมูล (<code class="docutils literal notranslate"><span class="pre">X</span></code>) อย่างไรก็ตาม ในทางปฏิบัติ เรามักจะเลือกใช้การแปลงดังนี้</p>
+<ol class="arabic simple">
+<li><p>หากข้อมูลเป็นประเภท ordinal ซึ่งค่ามาก/น้อยของข้อมูลมีความหมาย  จึงเลือกใช้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></p></li>
+<li><p>หากข้อมูลเป็นประเภท categorical จะเลือกใช้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> ขึ้นกับว่าโมเดลที่จะฝึกสอน เป็นโมเดลอะไร</p></li>
+</ol>
+<ul class="simple">
+<li><p>Linear models (<code class="docutils literal notranslate"><span class="pre">LinearRegression/LogisticRegression</span></code>) มักเลือกใช้ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> จะดีที่สุด เพราะโมเดลจะเห็นค่าชัดเจนในทุกมิติของข้อมูลประเภท categorical นั้น (มี weight ของโมเดลที่เพิ่มขึ้นตามจำนวนคอลัมน์ที่เพิ่มขึ้น)</p></li>
+<li><p>โมเดลจำพวกต้นไม้ (Tree-based models) มักเลือกใช้ <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> จะดีที่สุด</p></li>
+</ul>
+<p>สำหรับในหัวข้อนี้ จะยกตัวอย่างการแปลงชนิดข้อมูลที่สามารถระบุได้ว่า จะเลือกใช้  <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> กับคอลัมน์ใด โดยใช้ <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> มาครอบอีกที ซึ่งมีรูปแบบการใช้ ดังนี้</p>
+<figure>
+<img src="https://raw.githubusercontent.com/INRIA/scikit-learn-mooc/main/figures/api_diagram-columntransformer.svg" width=80%>
+<figcaption>ที่มารูป scikit-learn MOOC by scikit-learn developers (https://inria.github.io/scikit-learn-mooc/)</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="n">ct</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+       <span class="p">(</span><span class="n">ชื่อเล่น</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">รายชื่อคอลัมน์ที่ทำ</span> <span class="n">OneHotEncoder</span><span class="p">),</span>    <span class="c1"># คือ Transformer A ในรูปข้างบน</span>
+       <span class="p">(</span><span class="n">ชื่อเล่น</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">,</span> <span class="n">รายชื่อคอลัมน์ที่ทำ</span> <span class="n">OrdinalEncoder</span><span class="p">),</span>  <span class="c1"># คือ Transformer B ในรูปข้างบน                          </span>
+    <span class="p">],</span>                        
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;passthrough&#39;</span><span class="p">,</span> <span class="c1"># คอลัมน์ที่ไม่มีในรายชื่อที่ให้แปลง ก็ไม่ต้องทำอะไร</span>
+    <span class="n">verbose_feature_names_out</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># ไม่ต้องเอาชื่อเล่นที่กำหนด ไปเป็น prefix ชื่อคอลัมน์ของผลลัพธ์                      </span>
+<span class="p">)</span>
+<span class="n">ct</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>               <span class="c1"># ส่งข้อมูลให้ตัวแปลงเพื่อประเมิน</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># หรือใช้ X_new = ct.fit_transform(X) จบในตัวเดียว</span>
+</pre></div>
+</div>
+<p>โดยในตัวอย่างด้านล่างนี้ เราต้องการแปลง ดังนี้</p>
+<ol class="arabic simple">
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">lug_boot</span></code> แปลงด้วย <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> (หมายเหตุ: จริง ๆ แล้ว <code class="docutils literal notranslate"><span class="pre">lug_boot</span></code> ควรแปลงด้วย <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> เพราะเป็นค่ามีลำดับค่าด้วย (<code class="docutils literal notranslate"><span class="pre">small</span></code>,<code class="docutils literal notranslate"><span class="pre">med</span></code>,<code class="docutils literal notranslate"><span class="pre">big</span></code>) แต่ในที่นี้ จะแสร้งแปลงเป็นแบบ one-hot เพื่อเป็นตัวอย่างเท่านั้น)</p></li>
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">buying</span></code>,<code class="docutils literal notranslate"><span class="pre">maint</span></code>,<code class="docutils literal notranslate"><span class="pre">persons</span></code>,<code class="docutils literal notranslate"><span class="pre">safety</span></code> แปลงด้วย <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> โดยมีการกำหนดลำดับค่าที่ถูกต้องให้ด้วย</p></li>
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code> ไม่ต้องทำอะไร เพราะเป็นข้อมูลประเภท numerical อยู่แล้ว</p></li>
+</ol>
+<p>ซึ่งสามารถเขียนเป็นโค้ดได้ ดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="c1"># สร้างตัวแปลง OneHotEncoder เปล่า ๆ ขึ้นมาเช่นเคย</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># สร้างตัวแปลง OrdinalEncoder เปล่า ๆ ขึ้นมาเช่นเคย พร้อมระบุลำดับค่าของคอัมน์ที่จะแปลงใหู้กต้อง</span>
+<span class="nb">ord</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span>
+     <span class="n">categories</span><span class="o">=</span>
+      <span class="p">[[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="s1">&#39;vhigh&#39;</span><span class="p">],</span>  <span class="c1"># ลำดับของค่าในคอลัมน์ buying</span>
+       <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="s1">&#39;vhigh&#39;</span><span class="p">],</span>  <span class="c1"># ลำดับของค่าในคอลัมน์ maint</span>
+       <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;more&#39;</span><span class="p">],</span>            <span class="c1"># ลำดับของค่าในคอลัมน์ persons</span>
+       <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;med&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">]]</span>          <span class="c1"># ลำดับของค่าในคอลัมน์ safety</span>
+<span class="p">)</span>
+
+<span class="c1"># สร้าง ColumnTransformer มาครอบ OneHotEncoder และ OrdinalEncoder ที่สร้างไว้แล้ว</span>
+<span class="n">ct1</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>  <span class="c1"># &#39;my_hot&#39; และ &#39;my_ord&#39; เป็นเพียง prefix ที่ตั้งเอง</span>
+       <span class="p">(</span><span class="s1">&#39;my_hot&#39;</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lug_boot&#39;</span><span class="p">]),</span>
+       <span class="p">(</span><span class="s1">&#39;my_ord&#39;</span><span class="p">,</span> <span class="nb">ord</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;buying&#39;</span><span class="p">,</span><span class="s1">&#39;maint&#39;</span><span class="p">,</span><span class="s1">&#39;persons&#39;</span><span class="p">,</span><span class="s1">&#39;safety&#39;</span><span class="p">]),</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;passthrough&#39;</span><span class="p">,</span> <span class="c1"># ให้ปล่อยผ่านคอลัมน์ที่เหลือ (คือ doors) มาโดยไม่ต้องทำอะไร</span>
+    <span class="n">verbose_feature_names_out</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># ไม่ต้องแก้ไขชื่อคอลัมน์ของผลลัพธ์ที่ได้</span>
+<span class="p">)</span>
+<span class="n">ct1</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">ct1</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lug_boot_big</th>
+      <th>lug_boot_med</th>
+      <th>lug_boot_small</th>
+      <th>buying</th>
+      <th>maint</th>
+      <th>persons</th>
+      <th>safety</th>
+      <th>doors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1723</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1724</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1727</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>1728 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>จากผลลัพธ์ของ <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> จะเห็นว่า</p>
+<ul class="simple">
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">lug_boot</span></code> แตกเป็น 3 คอลัมน์ คือ <code class="docutils literal notranslate"><span class="pre">lug_boot_big</span></code>,	<code class="docutils literal notranslate"><span class="pre">lug_boot_med</span></code>,	และ <code class="docutils literal notranslate"><span class="pre">lug_boot_small</span></code></p></li>
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">buying</span></code>,	<code class="docutils literal notranslate"><span class="pre">maint</span></code>,	<code class="docutils literal notranslate"><span class="pre">persons</span></code>,	<code class="docutils literal notranslate"><span class="pre">safety</span></code> ถูกแปลงเป็นประเภท ordinal</p></li>
+<li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code> ไม่ถูกแตะเลย</p></li>
+</ul>
+<p>จบ.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.preprocessing import StandardScaler</span>
+
+<span class="c1"># scaler = StandardScaler()</span>
+
+<span class="c1"># ct2 = ColumnTransformer([</span>
+<span class="c1">#        (&#39;scaler&#39;, scaler, [&#39;doors&#39;,&#39;buying&#39;,&#39;maint&#39;,&#39;persons&#39;,&#39;safety&#39;]),</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     remainder=&#39;passthrough&#39;,</span>
+<span class="c1">#     verbose_feature_names_out=False</span>
+<span class="c1"># )</span>
+<span class="c1"># ct2.set_output(transform=&#39;pandas&#39;)</span>
+<span class="c1"># X_new2 = ct2.fit_transform(X_new)</span>
+<span class="c1"># X_new2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture05.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>ปัญหาการจำแนกประเภทดอกไอริส</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="appendix01_gdrive.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">การใช้ Google Drive กับ Google Colab</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> สารบัญ
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1. การแปลงข้อมูลให้เป็นตัวเลข</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.1. การแปลงข้อมูลให้เป็นตัวเลข 0, 1, 2, …</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onehotencoder">7.1.2. การแปลงข้อมูลให้เป็นตัวเลขโดยใช้ OneHotEncoder</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinalencoder-onehotencoder">7.2. การใช้ OrdinalEncoder และ OneHotEncoder</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kasemsit Teeyapan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -389,24 +389,19 @@ document.write(`
 <p>อย่างไรก็ตาม ในส่วนของข้อมูลสายพันธุ์ดอกไอริส (<code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code>, <code class="docutils literal notranslate"><span class="pre">Iris-virginica</span></code>, และ<code class="docutils literal notranslate"><span class="pre">Iris-versicolor</span></code>) จัดเป็นข้อมูลประเภท categorical (หรือเรียกอีกอย่างว่า nominal)  ซึ่งโดยทั่วไป ข้อมูลประเภท categorical นี้ เป็นข้อมูลที่<strong>ไม่มีลำดับของค่า</strong> มัน มักถูกเก็บค่าในรูป string อย่างเช่นกรณีของสายพันธุ์ดอกที่เป็นไปได้ 3 แบบ แต่ก็มีบ่อยครั้งที่พบเห็นเป็นตัวเลข เช่นเลขห้อง 34, 201, หรือ 555 เป็นต้น เนื่องจากค่าของเลขห้องไม่มีลำดับมากน้อย</p>
 <p>นอกจากข้อมูลประเภท numerical และข้อมูลประเภท categorical แล้ว ยังมีข้อมูลอีกประเภทหนึ่งคือ ข้อมูลประเภท ordinal ที่มีลักษณะคล้าย ๆ กับประเภท categorical แต่ค่าของมันมีลำดับมาเกี่ยวข้อง ยกตัวอย่างเช่น ข้อมูลวุฒิการศึกษา ระดับประถม มัธยม มหาวิทยาลัย ก็อาจเรียงจากน้อยไปมากได้เป็น ประถม &lt; มัธยม &lt; มหาวิทยาลัย เป็นต้น</p>
 <p>สำหรับตัวอย่างของข้อมูล ordinal เพิ่มเติม ให้พิจารณาชุดข้อมูล <a class="reference external" href="https://archive.ics.uci.edu/dataset/19/car+evaluation">Car Evaluation</a> ซึ่งเป็นชุดข้อมูลเกี่ยวกับการประเมินค่ารถ</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ucimlrepo
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ucimlrepo
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ucimlrepo-0.0.3-py3-none-any.whl.metadata (5.2 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ucimlrepo-0.0.3-py3-none-any.whl (7.0 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ucimlrepo
-Successfully installed ucimlrepo-0.0.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (0.0.3)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.3.2</span> -&gt; <span class=" -Color -Color-Green">24.0</span>
@@ -417,6 +412,7 @@ Successfully installed ucimlrepo-0.0.3
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1221,7 +1217,7 @@ Successfully installed ucimlrepo-0.0.3
 <p>สำหรับในหัวข้อนี้ จะยกตัวอย่างการแปลงชนิดข้อมูลที่สามารถระบุได้ว่า จะเลือกใช้  <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> กับคอลัมน์ใด โดยใช้ <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> มาครอบอีกที ซึ่งมีรูปแบบการใช้ ดังนี้</p>
 <figure>
 <img src="https://raw.githubusercontent.com/INRIA/scikit-learn-mooc/main/figures/api_diagram-columntransformer.svg" width=80%>
-<figcaption>ที่มารูป scikit-learn MOOC by scikit-learn developers (https://inria.github.io/scikit-learn-mooc/)</figcaption>
+<figcaption>ที่มารูป Scikit-learn MOOC by scikit-learn developers (https://inria.github.io/scikit-learn-mooc/)</figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
 
@@ -1436,25 +1432,6 @@ Successfully installed ucimlrepo-0.0.3
 <li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code> ไม่ถูกแตะเลย</p></li>
 </ul>
 <p>จบ.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.preprocessing import StandardScaler</span>
-
-<span class="c1"># scaler = StandardScaler()</span>
-
-<span class="c1"># ct2 = ColumnTransformer([</span>
-<span class="c1">#        (&#39;scaler&#39;, scaler, [&#39;doors&#39;,&#39;buying&#39;,&#39;maint&#39;,&#39;persons&#39;,&#39;safety&#39;]),</span>
-<span class="c1">#     ],</span>
-<span class="c1">#     remainder=&#39;passthrough&#39;,</span>
-<span class="c1">#     verbose_feature_names_out=False</span>
-<span class="c1"># )</span>
-<span class="c1"># ct2.set_output(transform=&#39;pandas&#39;)</span>
-<span class="c1"># X_new2 = ct2.fit_transform(X_new)</span>
-<span class="c1"># X_new2</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 

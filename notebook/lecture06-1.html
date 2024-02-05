@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>7. ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal &#8212; 269382 Data Analytics for Non-IT</title>
+    <title>7. การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข &#8212; 269382 Data Analytics for Non-IT</title>
   
   
   
@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/lecture06-1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="การใช้ Google Drive กับ Google Colab" href="appendix01_gdrive.html" />
+    <link rel="next" title="8. การตัดสินใจด้วยต้นไม้" href="lecture06-2.html" />
     <link rel="prev" title="6. ปัญหาการจำแนกประเภทดอกไอริส" href="lecture05.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,7 +177,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture04-1.html">4. การทำนายความยาวกลีบเลี้ยงด้วยชุดข้อมูลดอกไอริส</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture04-2.html">5. สมมติฐานของ Linear regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture05.html">6. ปัญหาการจำแนกประเภทดอกไอริส</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture06-2.html">8. การตัดสินใจด้วยต้นไม้</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
 <ul class="nav bd-sidenav">
@@ -351,7 +352,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal</h1>
+    <h1>การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,8 +379,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="category-ordinal">
-<h1><span class="section-number">7. </span>ข้อมูลที่เป็น category และข้อมูลที่เป็น ordinal<a class="headerlink" href="#category-ordinal" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="categorical-ordinal">
+<h1><span class="section-number">7. </span>การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข<a class="headerlink" href="#categorical-ordinal" title="Permalink to this heading">#</a></h1>
 <p><strong>จุดประสงค์การเรียนรู้</strong></p>
 <ol class="arabic simple">
 <li><p>ทราบว่าประเภทข้อมูลมี 3 ประเภทคือ numerical, categorical และ ordinal และทราบความแตกต่างของข้อมูลแต่ละชนิด</p></li>
@@ -1431,7 +1432,183 @@ document.write(`
 <li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">buying</span></code>,	<code class="docutils literal notranslate"><span class="pre">maint</span></code>,	<code class="docutils literal notranslate"><span class="pre">persons</span></code>,	<code class="docutils literal notranslate"><span class="pre">safety</span></code> ถูกแปลงเป็นประเภท ordinal</p></li>
 <li><p>คอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code> ไม่ถูกแตะเลย</p></li>
 </ul>
-<p>จบ.</p>
+<p>ผลลัพธ์ข้างต้น สามารถนำไปใช้เทรนโมเดลได้เลย หรือหากจะทำการ Standarization ก่อน ก็สามารถทำได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> ร่วมกับ <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> อีกก็ได้ เพื่อ Standardize เฉพาะบางคอลัมน์ที่จำเป็น กล่าวคือ คอลัมน์ที่ผ่าน <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> มา ไม่จำเป็นต้องมาสเกลค่าอีกครั้ง</p>
+<p>โค้ดด้านล่างนี้คือตัวอย่างการทำ Standardization ต่อจากโค้ดก่อนหน้า ซึ่งเราเลือกทำ Standardize เฉพาะกับคอลัมน์ <code class="docutils literal notranslate"><span class="pre">doors</span></code>, <code class="docutils literal notranslate"><span class="pre">buying</span></code>, <code class="docutils literal notranslate"><span class="pre">maint</span></code>, <code class="docutils literal notranslate"><span class="pre">persons</span></code>, <code class="docutils literal notranslate"><span class="pre">safety</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>   
+
+<span class="c1"># ใช้ ColumnTransformer เพื่อทำ StandardScaler เฉพาะบางคอลัมน์</span>
+<span class="n">ct2</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+       <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;doors&#39;</span><span class="p">,</span><span class="s1">&#39;buying&#39;</span><span class="p">,</span><span class="s1">&#39;maint&#39;</span><span class="p">,</span><span class="s1">&#39;persons&#39;</span><span class="p">,</span><span class="s1">&#39;safety&#39;</span><span class="p">]),</span>
+     <span class="p">],</span>
+     <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;passthrough&#39;</span><span class="p">,</span>
+     <span class="n">verbose_feature_names_out</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ct2</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+<span class="n">X_new2</span> <span class="o">=</span> <span class="n">ct2</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
+<span class="n">X_new2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>doors</th>
+      <th>buying</th>
+      <th>maint</th>
+      <th>persons</th>
+      <th>safety</th>
+      <th>lug_boot_big</th>
+      <th>lug_boot_med</th>
+      <th>lug_boot_small</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.341641</td>
+      <td>1.341641</td>
+      <td>1.341641</td>
+      <td>-1.224745</td>
+      <td>-1.224745</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.341641</td>
+      <td>1.341641</td>
+      <td>1.341641</td>
+      <td>-1.224745</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.341641</td>
+      <td>1.341641</td>
+      <td>1.341641</td>
+      <td>-1.224745</td>
+      <td>1.224745</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.341641</td>
+      <td>1.341641</td>
+      <td>1.341641</td>
+      <td>-1.224745</td>
+      <td>-1.224745</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.341641</td>
+      <td>1.341641</td>
+      <td>1.341641</td>
+      <td>-1.224745</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1723</th>
+      <td>1.341641</td>
+      <td>-1.341641</td>
+      <td>-1.341641</td>
+      <td>1.224745</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1724</th>
+      <td>1.341641</td>
+      <td>-1.341641</td>
+      <td>-1.341641</td>
+      <td>1.224745</td>
+      <td>1.224745</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>1.341641</td>
+      <td>-1.341641</td>
+      <td>-1.341641</td>
+      <td>1.224745</td>
+      <td>-1.224745</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>1.341641</td>
+      <td>-1.341641</td>
+      <td>-1.341641</td>
+      <td>1.224745</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1727</th>
+      <td>1.341641</td>
+      <td>-1.341641</td>
+      <td>-1.341641</td>
+      <td>1.224745</td>
+      <td>1.224745</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1728 rows × 8 columns</p>
+</div></div></div>
+</div>
 </section>
 </section>
 
@@ -1475,11 +1652,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="appendix01_gdrive.html"
+       href="lecture06-2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">การใช้ Google Drive กับ Google Colab</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>การตัดสินใจด้วยต้นไม้</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

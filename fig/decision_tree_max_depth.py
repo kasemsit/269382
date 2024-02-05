@@ -45,8 +45,14 @@ fig = px.line(df,
         markers=True)        
 fig.update_traces(texttemplate="%{y}")
 fig.update_layout(yaxis_tickformat=".1%")
-fig.update_traces(textposition='bottom right',textfont_size=10)
+fig.update_traces(textposition='bottom right',textfont_size=9)
 fig.update_layout(
-    margin=dict(l=20, r=20, t=20, b=20),
+    margin=dict(l=0, r=0, t=0, b=0),
 )
-fig.write_image('fig/decision_tree_max_depth.png', width=1024, height=768)
+fig.update_layout(legend=dict(
+    yanchor="bottom",
+    y=0.01,
+    xanchor="right",
+    x=0.99
+))
+fig.write_image('fig/decision_tree_max_depth.svg', width=900, height=400)

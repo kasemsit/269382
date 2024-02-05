@@ -8,3 +8,5 @@ jupytext
 ghp-import
 scikit-learn
 statsmodels
+kaleido
+ucimlrepo

@@ -1,0 +1,3334 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9. ปัญหาการจัดกลุ่มลูกค้า &#8212; 269382 Data Analytics for Non-IT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/lecture07';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="การใช้ Google Drive กับ Google Colab" href="appendix01_gdrive.html" />
+    <link rel="prev" title="8. การตัดสินใจด้วยต้นไม้" href="lecture06-2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="ค้นหาคำในเล่ม..."
+         aria-label="ค้นหาคำในเล่ม..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="269382 Data Analytics for Non-IT - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="269382 Data Analytics for Non-IT - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    269382 Data Analytics for Non-IT
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">เนื้อหา</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture01.html">1. สำรวจชุดข้อมูลทิป</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture02.html">2. สำรวจชุดข้อมูลขายของออนไลน์</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture03.html">3. สำรวจชุดข้อมูลดอกไอริส</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture04-1.html">4. การทำนายความยาวกลีบเลี้ยงด้วยชุดข้อมูลดอกไอริส</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture04-2.html">5. สมมติฐานของ Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture05.html">6. ปัญหาการจำแนกประเภทดอกไอริส</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture06-1.html">7. การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture06-2.html">8. การตัดสินใจด้วยต้นไม้</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix01_gdrive.html">การใช้ Google Drive กับ Google Colab</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/kasemsit/269382/blob/master/notebook/lecture07.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebook/lecture07.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ปัญหาการจัดกลุ่มลูกค้า</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> สารบัญ </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10. อ่านข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.1. เตรียมข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">10.2. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">10.2.1. การคำนวณ Recency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">10.2.2. การคำนวณ Frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">10.2.3. การคำนวณ Monetary value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.2.4. คุณลักษณะ RFM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">10.3. Standardization</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">11. K-Means Clustering</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">9. </span>ปัญหาการจัดกลุ่มลูกค้า<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>จากข้อมูลขายของออนไลน์ที่นักศึกษาเคยใช้ จะเห็นว่ามีรายการสินค้าที่ลูกค้าสั่งซื้อเป็นจำนวนมาก  จึงเกิดความสนใจที่จะจัดลูกค้าเป็นกลุ่ม ๆ (<strong>Customer segmentation</strong>) เพื่อที่ว่า เราอาจค้นพบลูกค้ากลุ่มที่เข้ามาซื้อบ่อย แต่ยอดเงินที่จ่ายไม่สูง หรือลูกค้ากลุ่มที่นาน ๆ ครั้งเข้ามาซื้อ แต่คิดเป็นยอดซื้อที่สูง เป็นต้น เพื่อที่ว่าเราจะสามารถจัดโปรโมชันหรือการส่งเสริมการขายได้ถูกกลุ่ม ซึ่งเป็นไปได้ว่าอาจมีนักช๊อปที่ยังไม่ช๊อปแต่รอโปรโมชันอยู่ก็เป็นได้</p>
+<p><strong>จุดประสงค์การเรียนรู้</strong></p>
+<ol class="arabic simple">
+<li><p>สามารถคำนวณค่า Recency (R), Frequency (F) และ Monetary (M) จากข้อมูลได้</p></li>
+<li><p>สามารถใช้วิธี K-Means ในการแบ่งกลุ่มข้อมูลลูกค้าจากค่า RFM</p></li>
+<li><p>สามารถตีความผลการจัดกลุ่มที่ได้จาก K-Means</p></li>
+</ol>
+<p>สำหรับหัวข้อนี้ เราจะใช้ข้อมูลการซื้อของออนไลน์ (<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/online+retail">Online Retail</a>) ซึ่งเป็นตัวเดียวกันกับที่เคยใช้ในคาบก่อน ๆ แต่มีจำนวนของข้อมูลที่มากกว่า</p>
+<p>โดยรายละเอียดของข้อมูลแต่ละคอลัมน์ มีดังนี้</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>คอลัมน์</p></th>
+<th class="head text-left"><p>คำอธิบาย</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvoiceNo</span></code></p></td>
+<td class="text-left"><p>เลขธุรกรรม (ตัวเลข 6 หลัก) โดยหากมีการขึ้นต้นด้วย <code class="docutils literal notranslate"><span class="pre">C</span></code> จะหมายถึงการยกเลิกสินค้า</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">StockCode</span></code></p></td>
+<td class="text-left"><p>รหัสสินค้า (ตัวเลข 5 หลัก)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Description</span></code></p></td>
+<td class="text-left"><p>ชื่อสินค้า</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></p></td>
+<td class="text-left"><p>จำนวนชิ้นที่ซื้อ</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvoiceDate</span></code></p></td>
+<td class="text-left"><p>วันและเวลาของธุรกรรม</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code></p></td>
+<td class="text-left"><p>ราคาต่อหน่วย</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CustomerID</span></code></p></td>
+<td class="text-left"><p>รหัสลูกค้า (ตัวเลข 5 หลัก)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Country</span></code></p></td>
+<td class="text-left"><p>ประเทศที่อยู่ของลูกค้า</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1><span class="section-number">10. </span>อ่านข้อมูล<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<p>ก่อนอื่น อ่านข้อมูลและทำการแปลงชนิดข้อมูลให้เหมาะสม</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>-c<span class="w"> </span>-q<span class="w"> </span>https://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx<span class="w"> </span>-O<span class="w"> </span>data.xlsx
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">BadZipFile</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:504,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">504</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>         <span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">506</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">509</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">510</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">512</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span>     <span class="p">)</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:1580,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1577</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">1578</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">storage_options</span>
+<span class="ne">-&gt; </span><span class="mi">1580</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engines</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span>
+<span class="g g-Whitespace">   </span><span class="mi">1581</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_io</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1582</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1583</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1584</span> <span class="p">)</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:553,</span> in <span class="ni">OpenpyxlReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span><span class="sd"> Reader using openpyxl engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span><span class="sd">     Arbitrary keyword arguments passed to excel engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">552</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">553</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span>     <span class="n">filepath_or_buffer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span> <span class="p">)</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:582,</span> in <span class="ni">BaseExcelReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">581</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">582</span>     <span class="bp">self</span><span class="o">.</span><span class="n">book</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span><span class="p">,</span> <span class="n">engine_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">583</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:570,</span> in <span class="ni">OpenpyxlReader.load_workbook</span><span class="nt">(self, filepath_or_buffer, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">def</span> <span class="nf">load_workbook</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">filepath_or_buffer</span><span class="p">:</span> <span class="n">FilePath</span> <span class="o">|</span> <span class="n">ReadBuffer</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">engine_kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Workbook</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">load_workbook</span>
+<span class="ne">--&gt; </span><span class="mi">570</span>     <span class="k">return</span> <span class="n">load_workbook</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="n">filepath_or_buffer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span>         <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span>         <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span>         <span class="n">keep_links</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span>         <span class="o">**</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span>     <span class="p">)</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:346,</span> in <span class="ni">load_workbook</span><span class="nt">(filename, read_only, keep_vba, data_only, keep_links, rich_text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Open the given filename and return the workbook</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span><span class="sd"> :param filename: the path to open or a file-like object</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">ExcelReader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="p">,</span> <span class="n">keep_vba</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span>                      <span class="n">data_only</span><span class="p">,</span> <span class="n">keep_links</span><span class="p">,</span> <span class="n">rich_text</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">346</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span> <span class="k">return</span> <span class="n">reader</span><span class="o">.</span><span class="n">wb</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:287,</span> in <span class="ni">ExcelReader.read</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;read manifest&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">287</span>     <span class="bp">self</span><span class="o">.</span><span class="n">read_manifest</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span>     <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;read strings&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="bp">self</span><span class="o">.</span><span class="n">read_strings</span><span class="p">()</span>
+
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:134,</span> in <span class="ni">ExcelReader.read_manifest</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="k">def</span> <span class="nf">read_manifest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">134</span>     <span class="n">src</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ARC_CONTENT_TYPES</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="n">root</span> <span class="o">=</span> <span class="n">fromstring</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="bp">self</span><span class="o">.</span><span class="n">package</span> <span class="o">=</span> <span class="n">Manifest</span><span class="o">.</span><span class="n">from_tree</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+<span class="nn">File /usr/lib/python3.10/zipfile.py:1476,</span> in <span class="ni">ZipFile.read</span><span class="nt">(self, name, pwd)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return file bytes for name.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1475</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1476</span>     <span class="k">return</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="nn">File /usr/lib/python3.10/zipfile.py:911,</span> in <span class="ni">ZipExtFile.read</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span>     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">buf</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_N</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">912</span>     <span class="k">return</span> <span class="n">buf</span>
+<span class="g g-Whitespace">    </span><span class="mi">914</span> <span class="n">end</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span>
+
+<span class="nn">File /usr/lib/python3.10/zipfile.py:1015,</span> in <span class="ni">ZipExtFile._read1</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">-&gt; </span><span class="mi">1015</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_crc</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="k">return</span> <span class="n">data</span>
+
+<span class="nn">File /usr/lib/python3.10/zipfile.py:943,</span> in <span class="ni">ZipExtFile._update_crc</span><span class="nt">(self, newdata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">941</span> <span class="c1"># Check the CRC if we&#39;re at the end of the file</span>
+<span class="g g-Whitespace">    </span><span class="mi">942</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_crc</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expected_crc</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">943</span>     <span class="k">raise</span> <span class="n">BadZipFile</span><span class="p">(</span><span class="s2">&quot;Bad CRC-32 for file </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="ne">BadZipFile</span>: Bad CRC-32 for file &#39;[Content_Types].xml&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;StockCode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;StockCode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;Int64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>  <span class="c1"># Int64 can have NaN integer and also used to remove floating point</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-91af0969-59f5-418c-a47f-327ebbb47262" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>InvoiceNo</th>
+      <th>StockCode</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>InvoiceDate</th>
+      <th>UnitPrice</th>
+      <th>CustomerID</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>481672</th>
+      <td>577358</td>
+      <td>82578</td>
+      <td>KITCHEN METAL SIGN</td>
+      <td>4</td>
+      <td>2011-11-18 15:59:00</td>
+      <td>1.25</td>
+      <td>&lt;NA&gt;</td>
+      <td>United Kingdom</td>
+    </tr>
+    <tr>
+      <th>351759</th>
+      <td>567668</td>
+      <td>23328</td>
+      <td>SET 6 SCHOOL MILK BOTTLES IN CRATE</td>
+      <td>2</td>
+      <td>2011-09-21 15:29:00</td>
+      <td>7.46</td>
+      <td>&lt;NA&gt;</td>
+      <td>United Kingdom</td>
+    </tr>
+    <tr>
+      <th>341370</th>
+      <td>566757</td>
+      <td>20956</td>
+      <td>PORCELAIN T-LIGHT HOLDERS ASSORTED</td>
+      <td>1</td>
+      <td>2011-09-14 15:54:00</td>
+      <td>2.46</td>
+      <td>&lt;NA&gt;</td>
+      <td>United Kingdom</td>
+    </tr>
+    <tr>
+      <th>487167</th>
+      <td>577768</td>
+      <td>20727</td>
+      <td>LUNCH BAG  BLACK SKULL.</td>
+      <td>2</td>
+      <td>2011-11-21 15:18:00</td>
+      <td>4.13</td>
+      <td>&lt;NA&gt;</td>
+      <td>United Kingdom</td>
+    </tr>
+    <tr>
+      <th>519862</th>
+      <td>580188</td>
+      <td>23329</td>
+      <td>DECORATIVE WICKER HEART LARGE</td>
+      <td>9</td>
+      <td>2011-12-02 12:02:00</td>
+      <td>1.65</td>
+      <td>16440</td>
+      <td>United Kingdom</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-91af0969-59f5-418c-a47f-327ebbb47262')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-91af0969-59f5-418c-a47f-327ebbb47262 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-91af0969-59f5-418c-a47f-327ebbb47262');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-d17ae140-8cc2-4ecd-ab18-c13a0d9dc811">
+  <button class="colab-df-quickchart" onclick="quickchart('df-d17ae140-8cc2-4ecd-ab18-c13a0d9dc811')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-d17ae140-8cc2-4ecd-ab18-c13a0d9dc811 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 541909 entries, 0 to 541908
+Data columns (total 8 columns):
+ #   Column       Non-Null Count   Dtype         
+---  ------       --------------   -----         
+ 0   InvoiceNo    541909 non-null  string        
+ 1   StockCode    541909 non-null  string        
+ 2   Description  540455 non-null  string        
+ 3   Quantity     541909 non-null  int64         
+ 4   InvoiceDate  541909 non-null  datetime64[ns]
+ 5   UnitPrice    541909 non-null  float64       
+ 6   CustomerID   406829 non-null  string        
+ 7   Country      541909 non-null  string        
+dtypes: datetime64[ns](1), float64(1), int64(1), string(5)
+memory usage: 33.1 MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>ชุดข้อมูลนี้มี Customer กี่คน?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4372
+</pre></div>
+</div>
+</div>
+</div>
+<p>ชุดข้อมูลนี้มีกี่ Invoice?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25900
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h2><span class="section-number">10.1. </span>เตรียมข้อมูล<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>ข้อมูล Online Retail เป็นข้อมูลที่ยังไม่ได้ทำความสะอาดดีนัก ซึ่งในทางปฏิบัติจำเป็นจะต้องทำ Exploratory Data Analysis ก่อน เพื่อทำความเข้าใจข้อมูล อย่างไรก็ตาม จะขอข้ามขั้นตอนนั้น เพราะถือว่าได้เคยทำไปแล้วในคาบก่อน ๆ ดังนั้น ในส่วนของการเตรียมข้อมูล จะกระทำตามรายการต่อไปนี้</p>
+<ol class="arabic simple">
+<li><p>เอาข้อมูลเฉพาะคำสั่งซื้อที่มาจากอังกฤษ (United Kingdom) เพราะพบว่าคำสั่งซื้อส่วนมากมาจากที่นี่ นอกจากนี้ พฤติกรรมของลูกค้าแต่ละประเทศอาจต่างกัน ดังนั้นการเลือกสร้างโมเดลเฉพาะของอังกฤษ ก็สมเหตุสมผล</p></li>
+<li><p>ลบแถวที่ <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code> เป็น <code class="docutils literal notranslate"><span class="pre">NaN</span></code> เพราะเราต้องการจัดกลุ่มลูกค้า หากไม่มีก็ทำอะไรต่อไม่ได้ เพราะไม่ทราบว่าใครซื้อสินค้า</p></li>
+<li><p>ข้อมูลมีแค่ <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> และ <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> ดังนั้นจึงจะสร้างคอลัมน์ใหม่ที่แสดงจำนวนเงินที่ลูกค้าจ่าย ตั้งชื่อคอลัมน์ว่า <code class="docutils literal notranslate"><span class="pre">TotalPrice</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;United Kingdom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># 1) พิจารณาอังกฤษเท่านั้น</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 2) ลบแถวที่ไม่มี CustomerID</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalPrice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UnitPrice&#39;</span><span class="p">]</span>    <span class="c1"># 3) จำนวนเงินที่ลูกค้าจ่ายในรายการนั้น</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rfm">
+<h2><span class="section-number">10.2. </span>การคำนวณค่า RFM จากข้อมูล<a class="headerlink" href="#rfm" title="Permalink to this heading">#</a></h2>
+<p>ก่อนอื่น RFM คืออะไร?</p>
+<p>RFM เป็นค่า 3 ค่าที่อธิบายคุณลักษณะของลูกค้า ซึ่งมีค่าดังนี้</p>
+<ol class="arabic simple">
+<li><p><strong>R = Recency</strong> หมายถึง ลูกค้าเข้ามาซื้อของล่าสุดเมื่อไร ยิ่งค่าน้อย ก็แปลว่าลูกค้าเพิ่งเข้ามาซื้อไม่นาน</p></li>
+<li><p><strong>F = Frequency</strong> หมายถึง ความถี่ของการซื้อสินค้า</p></li>
+<li><p><strong>M - Monetary value</strong> หมายถึง จำนวนเงินที่ลูกค้าจ่าย</p></li>
+</ol>
+<p>ค่าทั้ง 3 ค่านี้ ถูกเลือกมาใช้ในการประเมินลักษณะของลูกค้า อย่างไรก็ตาม ในทางปฏิบัติ การคำนวณค่าเหล่านี้ไม่มีสูตรตายตัว มีวิธีอยู่หลายวิธี ซึ่งวิธีการคำนวณในหัวข้อต่อไป เป็นเพียงวิธีการแบบหนึ่งเท่านั้น</p>
+<p>ก่อนอื่น แบ่งตารางตามรหัสลูกค้า</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="recency">
+<h3><span class="section-number">10.2.1. </span>การคำนวณ Recency<a class="headerlink" href="#recency" title="Permalink to this heading">#</a></h3>
+<p>พิจารณาจากคอลัมน์ <code class="docutils literal notranslate"><span class="pre">InvoiceDate</span></code> ซึ่งเป็นตัวแปร DateTime อยู่แล้ว โดยจะคำนวณผลต่างระหว่างวันที่ล่าสุดในชุดข้อมูล กับ <code class="docutils literal notranslate"><span class="pre">InvoiceDate</span></code> ล่าสุดของลูกค้าแต่ละคน</p>
+<p>โดยผลลัพธ์จะเก็บเป็นจำนวนวัน และหากจำนวนเกิน 365 วัน จะให้ถือเป็นค่า R = 365</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">today</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;InvoiceDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c1"># วันที่ล่าสุดในชุดข้อมูล</span>
+
+<span class="k">def</span> <span class="nf">days_since_last_invoice</span><span class="p">(</span><span class="n">inv_date</span><span class="p">):</span>     <span class="c1"># inv_date เป็นคอลัมน์ของเฉพาะ customer แต่ละคน</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">today</span> <span class="o">-</span> <span class="n">inv_date</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="o">.</span><span class="n">days</span>   <span class="c1"># จำนวนเดือน</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">customer_group</span><span class="p">[</span><span class="s1">&#39;InvoiceDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">days_since_last_invoice</span><span class="p">)</span>
+<span class="n">R</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Recency&#39;</span>
+<span class="n">R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CustomerID
+12346    325
+12747      1
+12748      0
+12749      3
+12820      2
+        ... 
+18280    277
+18281    180
+18282      7
+18283      3
+18287     42
+Name: Recency, Length: 3950, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CustomerID
+12346    325
+12747      1
+12748      0
+12749      3
+12820      2
+        ... 
+18280    277
+18281    180
+18282      7
+18283      3
+18287     42
+Name: Recency, Length: 3950, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="frequency">
+<h3><span class="section-number">10.2.2. </span>การคำนวณ Frequency<a class="headerlink" href="#frequency" title="Permalink to this heading">#</a></h3>
+<p>ในที่นี้ จะประเมินความถี่ของการที่ลูกค้ามีต่อร้านขายของออนไลน์จากจำนวน Invoice ที่เกิดขึ้นของลูกค้าคนหนึ่ง โดยให้คะแนน 0 ถึง 10</p>
+<ul class="simple">
+<li><p>ถ้าจำนวน Invoice น้อยกว่า 10 ก็จะให้คะแนนเท่ากับจำนวน Invoice</p></li>
+<li><p>ถ้าจำนวน Invoice มากกว่า 10 ก็จะให้คะแนน 10 คะแนน</p></li>
+</ul>
+<p>อนึ่ง ในทางปฏิบัติควรพิจารณาเฉพาะ Invoice ที่ไม่เก่าเกินไป เช่น Invoice ที่อายุไม่เกิน 10 เดือน แต่สำหรับในที่นี้ จะพิจารณาจำนวน Invoice ทั้งหมดของลูกค้าแต่ละรายโดยไม่สนว่าเก่าหรือใหม่</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">customer_group</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">F</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Frequency&#39;</span>
+<span class="n">F</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CustomerID
+12346     2
+12747    10
+12748    10
+12749     8
+12820     4
+         ..
+18280     1
+18281     1
+18282     3
+18283    10
+18287     3
+Name: Frequency, Length: 3950, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="monetary-value">
+<h3><span class="section-number">10.2.3. </span>การคำนวณ Monetary value<a class="headerlink" href="#monetary-value" title="Permalink to this heading">#</a></h3>
+<p>จำนวนเงินรวมที่ลูกค้าจ่ายเพื่อซื้อสินค้า โดยปกติจะต้องกำหนดกรอบเวลาของการประเมินมูลค่าให้ชัดเจน เช่นไม่เกิน 1 ปี เป็นต้น แต่เพื่อความง่าย จะคำนวณ Monetary value จากยอดรวมทั้งหมดของลูกค้าแต่ละคนในชุดข้อมูลที่มี (เนื่องจากข้อมูลเรามีย้อนหลังไม่นาน)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">customer_group</span><span class="p">[</span><span class="s1">&#39;TotalPrice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">M</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Monetary&#39;</span>
+<span class="n">M</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CustomerID
+12346        0.00
+12747     4196.01
+12748    29072.10
+12749     3868.20
+12820      942.34
+           ...   
+18280      180.60
+18281       80.82
+18282      176.60
+18283     2094.88
+18287     1837.28
+Name: Monetary, Length: 3950, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count      3950.000000
+mean       1713.385669
+std        6548.608224
+min       -4287.630000
+25%         282.255000
+50%         627.060000
+75%        1521.782500
+max      256438.490000
+Name: Monetary, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>อย่างไรก็ตาม จากคำสั่ง <code class="docutils literal notranslate"><span class="pre">describe()</span></code> จะพบว่าค่ายอดรวมของลูกค้าบางรายติดลบ เราสันนิษฐานว่า ยอดติดลบนี้มาจากการคืนสินค้า ทำให้มีการลงยอดซื้อเป็นลบ โดยปกติแล้ว หากมียอดซื้อติดลบ ก็ควรจะมียอดซื้อเป็นบวกปรากฎด้วย อย่างไรก็ตาม เนื่องจากชุดข้อมูลที่เรามีอาจไม่ได้ย้อนหลังไปครอบคลุมครบถ้วนทุกการสั่งซื้อ ดังนั้นเราจะทำตัดค่า Monetary ที่เป็นค่าลบออกไป</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>นอกจากนี้ ค่ายอดใช้จ่ายที่มากเกินไป ก็สะท้อนว่าลูกค้าคนนั้นอาจเป็น outlier ในทางสถิติ เราอาจพิจารณาว่า หากยอดใช้จ่ายมีค่ามากกว่าค่าเฉลี่ยบวกลบ 2.5 เท่าของส่วนเบี่ยงเบนมาตรฐาน ขั้นไป จะถือว่ายอดใช้จ่ายนั้น เป็น outlier</p>
+<p>เราสามารถเลือกเอาแต่ค่าในช่วง mean±2.5×SD ดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="n">M</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">M</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">z_scores</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">2.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">10.2.4. </span>คุณลักษณะ RFM<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>จากค่า R, F และ M ที่คำนวณได้ก่อนหน้า เราจะนำมารวมกันเป็น DataFrame ดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RFM</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">R</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">M</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># ค่าของ Series R, F และ M ที่มี CustomerID เดียวกัน จะถูกนำมาต่อกันเป็น 1 แถวของ DataFrame RFM</span>
+<span class="n">RFM</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-477b3b81-34db-4a64-ae37-700838a66d8b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+    </tr>
+    <tr>
+      <th>CustomerID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12346</th>
+      <td>325</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12747</th>
+      <td>1</td>
+      <td>10</td>
+      <td>4196.01</td>
+    </tr>
+    <tr>
+      <th>12748</th>
+      <td>0</td>
+      <td>10</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12749</th>
+      <td>3</td>
+      <td>8</td>
+      <td>3868.20</td>
+    </tr>
+    <tr>
+      <th>12820</th>
+      <td>2</td>
+      <td>4</td>
+      <td>942.34</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>18280</th>
+      <td>277</td>
+      <td>1</td>
+      <td>180.60</td>
+    </tr>
+    <tr>
+      <th>18281</th>
+      <td>180</td>
+      <td>1</td>
+      <td>80.82</td>
+    </tr>
+    <tr>
+      <th>18282</th>
+      <td>7</td>
+      <td>3</td>
+      <td>176.60</td>
+    </tr>
+    <tr>
+      <th>18283</th>
+      <td>3</td>
+      <td>10</td>
+      <td>2094.88</td>
+    </tr>
+    <tr>
+      <th>18287</th>
+      <td>42</td>
+      <td>3</td>
+      <td>1837.28</td>
+    </tr>
+  </tbody>
+</table>
+<p>3950 rows × 3 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-477b3b81-34db-4a64-ae37-700838a66d8b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-477b3b81-34db-4a64-ae37-700838a66d8b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-477b3b81-34db-4a64-ae37-700838a66d8b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-d97cbe3b-8572-4e11-b156-496ac8587ba8">
+  <button class="colab-df-quickchart" onclick="quickchart('df-d97cbe3b-8572-4e11-b156-496ac8587ba8')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-d97cbe3b-8572-4e11-b156-496ac8587ba8 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>ปรากฎว่า RFM มี NaN อยู่ในคอลัมน์ Monetary ซึ่งเป็นผลจากการที่เราตัดเอา M &lt;= 0 และ M ที่เป็น outlier ออกไป ดังนั้น เราจะลบแถวที่มี NaN ทิ้งทั้งหมด</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RFM</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Recency       0
+Frequency     0
+Monetary     81
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RFM</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="standardization">
+<h2><span class="section-number">10.3. </span>Standardization<a class="headerlink" href="#standardization" title="Permalink to this heading">#</a></h2>
+<p>ในขั้นตอนต่อไป เป็นขั้นตอนการ Standardize ค่า RFM ซึ่งถือเป็นคุณลักษณะ 3 คุณลักษณะ (feature) ที่เราจะใช้เทรนโมเดล</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">transform_output</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>  <span class="c1"># ให้ Scikit-learn ใช้ Pandas ในการเก็บข้อมูลแทน Numpy ที่เป็นค่า default</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="n">RFM_normalized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">RFM</span><span class="p">)</span>
+<span class="n">RFM_normalized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-7c2559e8-d01a-4742-a75e-cff7f3956c11" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+    </tr>
+    <tr>
+      <th>CustomerID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12747</th>
+      <td>-0.900523</td>
+      <td>2.053571</td>
+      <td>1.505387</td>
+    </tr>
+    <tr>
+      <th>12749</th>
+      <td>-0.880237</td>
+      <td>1.393528</td>
+      <td>1.334654</td>
+    </tr>
+    <tr>
+      <th>12820</th>
+      <td>-0.890380</td>
+      <td>0.073442</td>
+      <td>-0.189223</td>
+    </tr>
+    <tr>
+      <th>12821</th>
+      <td>1.249845</td>
+      <td>-0.916622</td>
+      <td>-0.631731</td>
+    </tr>
+    <tr>
+      <th>12822</th>
+      <td>-0.200639</td>
+      <td>-0.256579</td>
+      <td>-0.201390</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>18280</th>
+      <td>1.899013</td>
+      <td>-0.916622</td>
+      <td>-0.585960</td>
+    </tr>
+    <tr>
+      <th>18281</th>
+      <td>0.915118</td>
+      <td>-0.916622</td>
+      <td>-0.637929</td>
+    </tr>
+    <tr>
+      <th>18282</th>
+      <td>-0.839664</td>
+      <td>-0.256579</td>
+      <td>-0.588044</td>
+    </tr>
+    <tr>
+      <th>18283</th>
+      <td>-0.880237</td>
+      <td>2.053571</td>
+      <td>0.411055</td>
+    </tr>
+    <tr>
+      <th>18287</th>
+      <td>-0.484650</td>
+      <td>-0.256579</td>
+      <td>0.276889</td>
+    </tr>
+  </tbody>
+</table>
+<p>3869 rows × 3 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7c2559e8-d01a-4742-a75e-cff7f3956c11')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-7c2559e8-d01a-4742-a75e-cff7f3956c11 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-7c2559e8-d01a-4742-a75e-cff7f3956c11');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-89bf23fc-aef8-4337-b7e2-5cb4abe20871">
+  <button class="colab-df-quickchart" onclick="quickchart('df-89bf23fc-aef8-4337-b7e2-5cb4abe20871')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-89bf23fc-aef8-4337-b7e2-5cb4abe20871 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
+<h1><span class="section-number">11. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h1>
+<p>จากข้อมูลที่เตรียมได้จากกระบวนการที่ผ่านมา จะนำไปจัดกลุ่ม (clustering) ด้วยวิธีการ K-Means clustering ซึ่งหลักการทำงานศึกษาได้จากสไลด์ต่อไปนี้ (<a class="reference external" href="https://docs.google.com/presentation/d/1LC-R_n-aIEvvhtg7WUpbi-rNul1wV-Tc7qdGypNtnZM/edit?usp=sharing">ลิงค์</a>)</p>
+<p>K-Means clustering เป็นโมเดลที่แตกต่างจากโมเดล Linear Regression, Logistic Regression และ Decision Tree Classifier ในแง่ที่ว่า เราสอนโมเดล K-Means โดยไม่ได้บอกเป้าหมาย (target) ที่ถูกต้องให้กับโมเดล ความแตกต่างในแง่นี้ จึงมีการจัดประเภทของโมเดล เป็น 2 ประเภท ดังนี้</p>
+<ol class="arabic simple">
+<li><p><strong>การเรียนรู้แบบมีผู้สอน (Supervised learning)</strong> โมเดลในกลุ่มนี้ ได้แก่ Linear Regression, Logistic Regression และ Decision Tree Classifier ซึ่งข้อมูลที่จะนำมาสอนโมเดลประเภทนี้ต้องประกอบด้วย X (คุณลักษณะ) ที่คู่กับ Y (เอาต์พุตที่ถูกต้อง)</p></li>
+<li><p><strong>การเรียนรู้แบบไม่มีผู้สอน (Unsupervised learning)</strong>  โมเดลในกลุ่มนี้ ได้แก่ K-Means clustering ซึ่งข้อมูลที่นำมาสอนโมเดลประเภทนี้ จะมีเพียง X (คุณลักษณะ) เท่านั้น แล้วตัวโมเดลจะพยายามจัดกลุ่มของ X ให้</p></li>
+</ol>
+<p>สำหรับโมเดล K-Means ใน Scikit-learn เรียกใช้ได้จาก</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+</pre></div>
+</div>
+<p>ซึ่งสามารถสร้างโมเดลเปล่า ๆ ก่อนการเทรน ดังนี้</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">จำนวนกลุ่มที่ต้องการแบ่ง</span><span class="p">,</span>      
+                <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span>  <span class="c1"># ระบุเทคนิคชื่อ k-means++ ที่ช่วยกำหนดตำแหน่ง centroid ตั้งต้น</span>
+                <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>โดยการเทรน สามารถทำได้โดยใช้</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ข้อมูล</span><span class="p">)</span>   <span class="c1"># ไม่ใช่ model.fit(ข้อมูล, เป้าหมาย) เหมือนโมเดลอื่น</span>
+</pre></div>
+</div>
+<p>ซึ่งเมื่อเทรนแล้ว จะได้จำนวน Cluster ตามที่กำหนดไว้แต่แรก โดยแต่ละ Cluster จะมีจุดศูนย์กลางของ Cluster คือ centroid ที่ดูได้จาก <code class="docutils literal notranslate"><span class="pre">model.cluster_centers_</span></code></p>
+<p>อย่างไรก็ตาม เวลานำโมเดลไปใช้จริง เราจะใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">model.predict(ข้อมูล)</span></code> ซึ่งจะให้ผลลัพธ์ว่า ข้อมูลแต่ละจุด อยู่ใกล้ centroid ใดมากที่สุด หรือก็คือ ให้ผลทำนายว่าข้อมูลแต่ละจุดเป็นสมาชิกของ Cluster ใด</p>
+<p>ตัวอย่างการเขียนโค้ด เป็นดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">RFM_normalized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=6, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=6, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">cluster_centers_</span>  <span class="c1"># แต่ละแถวคือ centroid ของ 1 cluster</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.66854588,  1.81049389,  0.96500007],
+       [-0.48978925, -0.65586107, -0.41935455],
+       [-0.73611446,  1.93878083,  4.3255557 ],
+       [ 0.78052503, -0.55735111, -0.41707422],
+       [-0.54964521,  0.44406955,  0.03406537],
+       [ 2.0731158 , -0.77518417, -0.51054402]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>จะนั้น เมื่อลองทำนาย จะเห็นว่าโมเดลใช้ค่า RFM ที่มี มาจัดกลุ่มว่า <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code> หนึ่ง ๆ นั้นจัดเป็นสมาชิก Cluster ใด</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">RFM_normalized</span><span class="p">)</span>
+<span class="n">RFM</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>     <span class="c1"># เราเอาผลการทำนายมาใส่ในตาราง RFM เดิมก่อน normalized ก็เพราะ เราจะได้เห็นค่าที่จริง ๆ ที่ไม่ใช่ค่า normalized</span>
+<span class="n">RFM</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-d61fa1e5-dabf-4368-b1bb-085959435f5b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+      <th>Cluster</th>
+    </tr>
+    <tr>
+      <th>CustomerID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12747</th>
+      <td>1</td>
+      <td>10</td>
+      <td>4196.01</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12749</th>
+      <td>3</td>
+      <td>8</td>
+      <td>3868.20</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12820</th>
+      <td>2</td>
+      <td>4</td>
+      <td>942.34</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>12821</th>
+      <td>213</td>
+      <td>1</td>
+      <td>92.72</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>12822</th>
+      <td>70</td>
+      <td>3</td>
+      <td>918.98</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d61fa1e5-dabf-4368-b1bb-085959435f5b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-d61fa1e5-dabf-4368-b1bb-085959435f5b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-d61fa1e5-dabf-4368-b1bb-085959435f5b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-f91c7f76-3c2d-4e36-b00a-b784a35efe7e">
+  <button class="colab-df-quickchart" onclick="quickchart('df-f91c7f76-3c2d-4e36-b00a-b784a35efe7e')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-f91c7f76-3c2d-4e36-b00a-b784a35efe7e button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>จากผลลัพธ์ที่ได้ข้างต้น ลองดูว่า</p>
+<ul class="simple">
+<li><p>แต่ละ Cluster มีค่า RMF แต่ละค่า เฉลี่ยเท่ากับเท่าไร</p></li>
+<li><p>แต่ละ Cluster มีจำนวนลูกค้ากี่ราย</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_summary</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">RFM</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Cluster&#39;</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;Recency&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Frequency&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Monetary&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;Cluster&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">})</span>
+       <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Cluster&#39;</span><span class="p">:</span><span class="s1">&#39;Number of customers&#39;</span><span class="p">})</span>
+       <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">cluster_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-6ed3332d-b634-4bff-ae74-bf76c5c76f43" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cluster</th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+      <th>Number of customers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>23.870130</td>
+      <td>9.263451</td>
+      <td>3158.461076</td>
+      <td>539</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>41.493344</td>
+      <td>1.790133</td>
+      <td>500.485146</td>
+      <td>1277</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>17.208696</td>
+      <td>9.652174</td>
+      <td>9610.764435</td>
+      <td>115</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>166.622705</td>
+      <td>2.091820</td>
+      <td>504.716830</td>
+      <td>599</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>35.512077</td>
+      <td>5.124396</td>
+      <td>1372.208492</td>
+      <td>828</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>294.164384</td>
+      <td>1.428571</td>
+      <td>325.400372</td>
+      <td>511</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6ed3332d-b634-4bff-ae74-bf76c5c76f43')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-6ed3332d-b634-4bff-ae74-bf76c5c76f43 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-6ed3332d-b634-4bff-ae74-bf76c5c76f43');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-5b3d0525-27c0-486c-9f99-6ee231aad83e">
+  <button class="colab-df-quickchart" onclick="quickchart('df-5b3d0525-27c0-486c-9f99-6ee231aad83e')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-5b3d0525-27c0-486c-9f99-6ee231aad83e button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>ซึ่งสามารถนำมาวาดกราฟเปรียบเทียบค่า RFM เฉลี่ยแต่ละ Cluster ดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+
+<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="s1">&#39;Monetary&#39;</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">subplot_titles</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">col_names</span><span class="p">):</span>
+  <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+      <span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">cluster_summary</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">),</span>
+      <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+  <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">tickmode</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="n">tickvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>                <div id="874be370-26a7-4154-aeae-157cf55e2fb3" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("874be370-26a7-4154-aeae-157cf55e2fb3")) {                    Plotly.newPlot(                        "874be370-26a7-4154-aeae-157cf55e2fb3",                        [{"name":"Recency","x":[0,1,2,3,4,5],"y":[23.87012987012987,41.49334377447142,17.208695652173912,166.6227045075125,35.51207729468599,294.16438356164383],"type":"bar","xaxis":"x","yaxis":"y"},{"name":"Frequency","x":[0,1,2,3,4,5],"y":[9.263450834879407,1.7901331245105716,9.652173913043478,2.0918196994991654,5.124396135265701,1.4285714285714286],"type":"bar","xaxis":"x2","yaxis":"y2"},{"name":"Monetary","x":[0,1,2,3,4,5],"y":[3158.4610760667906,500.48514643696166,9610.764434782608,504.7168297161937,1372.2084915458938,325.40037181996087],"type":"bar","xaxis":"x3","yaxis":"y3"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.2888888888888889],"tickmode":"array","tickvals":[0,1,2,3,4,5]},"yaxis":{"anchor":"x","domain":[0.0,1.0]},"xaxis2":{"anchor":"y2","domain":[0.35555555555555557,0.6444444444444445],"tickmode":"array","tickvals":[0,1,2,3,4,5]},"yaxis2":{"anchor":"x2","domain":[0.0,1.0]},"xaxis3":{"anchor":"y3","domain":[0.7111111111111111,1.0],"tickmode":"array","tickvals":[0,1,2,3,4,5]},"yaxis3":{"anchor":"x3","domain":[0.0,1.0]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Recency","x":0.14444444444444446,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Frequency","x":0.5,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Monetary","x":0.8555555555555556,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"showlegend":false},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('874be370-26a7-4154-aeae-157cf55e2fb3');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div></div>
+</div>
+<p>จากผลลัพธ์ที่ได้ เราอาจสนใจทำการตลาดส่งเสริมการขาย ด้วยโปรโมชันที่แตกต่างกันในแต่ละกลุ่ม</p>
+<ul class="simple">
+<li><p><strong>Cluster 0 และ 2</strong> อาจยุบรวมเป็นกลุ่มเดียวกัน (Monetary &gt; 2k) เป็นรายที่จ่ายเยอะ  และมาซื้อบ่อย  อาจเป็นผู้ซื้อสินค้าเพื่อนำไปขายต่อ</p></li>
+<li><p><strong>Cluster 4</strong> มาล่าสุด 35 วันโดยเฉลี่ย (Recency=35) ซึ่งถือว่าค่อนข้างไม่บ่อยเท่า Cluster 0 และ 2 และกำลังซื้อถือว่าอยู่ในระดับกลาง ๆ อาจกระตุ้นกลุ่มนี้มาซื้อบ่อยขึ้นและใช้จ่ายมากขึ้น</p></li>
+<li><p><strong>Cluster 1, 3 และ 5</strong> โดยเฉลี่ยซื้อไม่บ่อย และยอดซื้อไม่มาก (ราว ๆ 300-500 ปอนด์)</p>
+<ul>
+<li><p>Cluster 1: เพิ่งเข้ามาไม่นาน (เฉลี่ย 41 วัน)</p></li>
+<li><p>Cluster 3: ไม่ได้เข้ามาเกือบ 6 เดือน (เฉลี่ย 166 วัน)</p></li>
+<li><p>Cluster 5: ไม่ได้เข้ามาเกือบ 10 เดือน (เฉลี่ย 294 วัน)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>เพิ่มเติม</strong></p>
+<p>จากตาราง <code class="docutils literal notranslate"><span class="pre">cluster_summary</span></code> เราอาจแปลงค่า R, F, และ M ซึ่งเป็นค่าตัวเลขทศนิยม ให้เป็นค่าระดับได้ โดยใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">pd.cut()</span></code> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.qcut.html">คู่มือ</a>)</p>
+<p>ยกตัวอย่างในโค้ดต่อไปนี้ เป็นการแปลงค่า Recency ตามตาราง</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>ช่วงของค่า Recency</p></th>
+<th class="head text-left"><p>แปลงเป็นค่า</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(0 &lt; R \leq 60\)</span></p></td>
+<td class="text-left"><p>2 month</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(60 &lt; R \leq 180\)</span></p></td>
+<td class="text-left"><p>6 month</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(60 &lt; R \leq \infty\)</span></p></td>
+<td class="text-left"><p>&gt;6 month</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span>
+                              <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span>  <span class="c1"># np.inf คือค่า Infinity</span>
+                              <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2 month&#39;</span><span class="p">,</span> <span class="s1">&#39;6 months&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;6 months&#39;</span><span class="p">])</span>
+<span class="n">cluster_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-3120a673-383d-4ef3-92c7-8cdfe109f05d" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cluster</th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+      <th>Number of customers</th>
+      <th>R</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>23.870130</td>
+      <td>9.263451</td>
+      <td>3158.461076</td>
+      <td>539</td>
+      <td>2 month</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>41.493344</td>
+      <td>1.790133</td>
+      <td>500.485146</td>
+      <td>1277</td>
+      <td>2 month</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>17.208696</td>
+      <td>9.652174</td>
+      <td>9610.764435</td>
+      <td>115</td>
+      <td>2 month</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>166.622705</td>
+      <td>2.091820</td>
+      <td>504.716830</td>
+      <td>599</td>
+      <td>6 months</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>35.512077</td>
+      <td>5.124396</td>
+      <td>1372.208492</td>
+      <td>828</td>
+      <td>2 month</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>294.164384</td>
+      <td>1.428571</td>
+      <td>325.400372</td>
+      <td>511</td>
+      <td>&gt;6 months</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-3120a673-383d-4ef3-92c7-8cdfe109f05d')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-3120a673-383d-4ef3-92c7-8cdfe109f05d button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-3120a673-383d-4ef3-92c7-8cdfe109f05d');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-f851ac0e-5d4a-4b5d-b747-9d868dec411b">
+  <button class="colab-df-quickchart" onclick="quickchart('df-f851ac0e-5d4a-4b5d-b747-9d868dec411b')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-f851ac0e-5d4a-4b5d-b747-9d868dec411b button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>ในลักษณะเดียวกัน เราสามารถทำกับค่า Frequency และ Monetary ได้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;Frequency&#39;</span><span class="p">],</span>
+                              <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span>
+                              <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;3 times&#39;</span><span class="p">,</span> <span class="s1">&#39;8 times&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;8 times&#39;</span><span class="p">])</span>
+<span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;Monetary&#39;</span><span class="p">],</span>
+                              <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span>
+                              <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;very high&#39;</span><span class="p">])</span>
+<span class="n">cluster_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">])</span>  <span class="c1"># เรียงลำดับให้ดูง่าย</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-faa8dd35-0d0b-448e-b7d9-75d10502a12b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cluster</th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+      <th>Number of customers</th>
+      <th>R</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>17.208696</td>
+      <td>9.652174</td>
+      <td>9610.764435</td>
+      <td>115</td>
+      <td>2 month</td>
+      <td>&gt;8 times</td>
+      <td>very high</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>23.870130</td>
+      <td>9.263451</td>
+      <td>3158.461076</td>
+      <td>539</td>
+      <td>2 month</td>
+      <td>&gt;8 times</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>35.512077</td>
+      <td>5.124396</td>
+      <td>1372.208492</td>
+      <td>828</td>
+      <td>2 month</td>
+      <td>8 times</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>41.493344</td>
+      <td>1.790133</td>
+      <td>500.485146</td>
+      <td>1277</td>
+      <td>2 month</td>
+      <td>3 times</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>166.622705</td>
+      <td>2.091820</td>
+      <td>504.716830</td>
+      <td>599</td>
+      <td>6 months</td>
+      <td>3 times</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>294.164384</td>
+      <td>1.428571</td>
+      <td>325.400372</td>
+      <td>511</td>
+      <td>&gt;6 months</td>
+      <td>3 times</td>
+      <td>low</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-faa8dd35-0d0b-448e-b7d9-75d10502a12b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-faa8dd35-0d0b-448e-b7d9-75d10502a12b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-faa8dd35-0d0b-448e-b7d9-75d10502a12b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-89dd5786-7487-4c32-b90b-a5f70c584353">
+  <button class="colab-df-quickchart" onclick="quickchart('df-89dd5786-7487-4c32-b90b-a5f70c584353')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-89dd5786-7487-4c32-b90b-a5f70c584353 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> บทความวิจัยที่ใช้ RFM ในปัญหา Customer segmentation ได้แก่ “Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining” ดูที่ <a class="reference external" href="https://link.springer.com/article/10.1057/dbm.2012.17">Link</a></p>
+</div></blockquote>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture06-2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>การตัดสินใจด้วยต้นไม้</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="appendix01_gdrive.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">การใช้ Google Drive กับ Google Colab</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> สารบัญ
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10. อ่านข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.1. เตรียมข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">10.2. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">10.2.1. การคำนวณ Recency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">10.2.2. การคำนวณ Frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">10.2.3. การคำนวณ Monetary value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.2.4. คุณลักษณะ RFM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">10.3. Standardization</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">11. K-Means Clustering</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kasemsit Teeyapan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

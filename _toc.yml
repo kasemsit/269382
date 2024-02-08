@@ -15,6 +15,7 @@ parts:
     - file: notebook/lecture05.ipynb
     - file: notebook/lecture06-1.ipynb
     - file: notebook/lecture06-2.ipynb
+    - file: notebook/lecture07.ipynb
   - caption: ภาคผนวก
     chapters:
     - file: notebook/appendix01_gdrive.ipynb

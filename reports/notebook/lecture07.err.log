@@ -30,8 +30,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-%reset -f
-import pandas as pd
-df = pd.read_excel('online_retail.xlsx', sheet_name='Online Retail')  # การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก
+!wget -c -q https://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx -O online_retail.xlsx
 -------------------
 

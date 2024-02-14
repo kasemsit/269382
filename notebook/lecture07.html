@@ -438,152 +438,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;online_retail.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;online_retail.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:517,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">512</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">516</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">517</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>         <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">526</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">528</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">529</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">530</span>         <span class="n">keep_default_na</span><span class="o">=</span><span class="n">keep_default_na</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">531</span>         <span class="n">na_filter</span><span class="o">=</span><span class="n">na_filter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span>         <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span>     <span class="c1"># make sure to close opened file handles</span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span>     <span class="k">if</span> <span class="n">should_close</span><span class="p">:</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:1629,</span> in <span class="ni">ExcelFile.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, converters, true_values, false_values, skiprows, nrows, na_values, parse_dates, date_parser, date_format, thousands, comment, skipfooter, dtype_backend, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1589</span> <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="n">sheet_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1609</span>     <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1611</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1612</span><span class="sd">     Parse specified sheet(s) into a DataFrame.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1613</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1627</span><span class="sd">     &gt;&gt;&gt; file.parse()  # doctest: +SKIP</span>
-<span class="g g-Whitespace">   </span><span class="mi">1628</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1629</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1630</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1632</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1633</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1634</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1635</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1636</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1637</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1638</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1639</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1640</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1641</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1642</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1643</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1644</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1645</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1646</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1647</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1648</span>         <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1649</span>     <span class="p">)</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:793,</span> in <span class="ni">BaseExcelReader.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, dtype, true_values, false_values, skiprows, nrows, na_values, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, dtype_backend, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_by_index</span><span class="p">(</span><span class="n">asheetname</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span> <span class="n">file_rows_needed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_rows</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">index_col</span><span class="p">,</span> <span class="n">skiprows</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">793</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_data</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">file_rows_needed</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="c1"># pyxlsb opens two TemporaryFiles</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">sheet</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:616,</span> in <span class="ni">OpenpyxlReader.get_sheet_data</span><span class="nt">(self, sheet, file_rows_needed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Scalar</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">615</span> <span class="n">last_row_with_data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="ne">--&gt; </span><span class="mi">616</span> <span class="k">for</span> <span class="n">row_number</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">617</span>     <span class="n">converted_row</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">618</span>     <span class="k">while</span> <span class="n">converted_row</span> <span class="ow">and</span> <span class="n">converted_row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span>         <span class="c1"># trim trailing empty elements</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_read_only.py:81,</span> in <span class="ni">ReadOnlyWorksheet._cells_by_row</span><span class="nt">(self, min_col, min_row, max_col, max_row, values_only)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="n">src</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_source</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">WorkSheetParser</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_strings</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>                          <span class="n">data_only</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">data_only</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span>                          <span class="n">date_formats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">_date_formats</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">81</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="k">if</span> <span class="n">max_row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="n">max_row</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>         <span class="k">break</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:167,</span> in <span class="ni">WorkSheetParser.parse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="n">element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span> <span class="k">elif</span> <span class="n">tag_name</span> <span class="o">==</span> <span class="n">ROW_TAG</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">167</span>     <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_row</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">yield</span> <span class="n">row</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:303,</span> in <span class="ni">WorkSheetParser.parse_row</span><span class="nt">(self, row)</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="k">if</span> <span class="n">keys</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;spans&#39;</span><span class="p">}:</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="c1"># don&#39;t create dimension objects unless they have relevant information</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="bp">self</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">)]</span> <span class="o">=</span> <span class="n">attrs</span>
-<span class="ne">--&gt; </span><span class="mi">303</span> <span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_cell</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">,</span> <span class="n">cells</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:303,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="k">if</span> <span class="n">keys</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;spans&#39;</span><span class="p">}:</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="c1"># don&#39;t create dimension objects unless they have relevant information</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="bp">self</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">)]</span> <span class="o">=</span> <span class="n">attrs</span>
-<span class="ne">--&gt; </span><span class="mi">303</span> <span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_cell</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">,</span> <span class="n">cells</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:202,</span> in <span class="ni">WorkSheetParser.parse_cell</span><span class="nt">(self, element)</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="n">VALUE_TAG</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">if</span> <span class="n">coordinate</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">coordinate_to_tuple</span><span class="p">(</span><span class="n">coordinate</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">col_counter</span> <span class="o">=</span> <span class="n">column</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/utils/cell.py:202,</span> in <span class="ni">coordinate_to_tuple</span><span class="nt">(coordinate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="n">col</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[:</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="n">row</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="n">idx</span><span class="p">:]</span>
-<span class="ne">--&gt; </span><span class="mi">202</span> <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">_COL_STRING_CACHE</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

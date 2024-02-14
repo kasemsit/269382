@@ -1,6 +1,8 @@
 # Temporary datasets/outputs
 notebook/data.xlsx
 notebook/online_retail.xlsx
+notebook/creditcard.csv
+notebook/creditcard.zip
 notebook/ggez.csv
 notebook/lnwzaa55+.csv
 notebook/iris.zip

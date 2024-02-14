@@ -1,5 +1,7 @@
-build:
+buildall:
 	jupyter-book build --all ./
+build:
+	jupyter-book build ./	
 clean:
 	rm -f notebook/data.xlsx 
 	rm -f notebook/online_retail.xlsx 

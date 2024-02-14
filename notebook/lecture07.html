@@ -180,8 +180,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture06-1.html">7. การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture06-2.html">8. การตัดสินใจด้วยต้นไม้</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
 <ul class="nav bd-sidenav">
@@ -365,22 +363,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10. อ่านข้อมูล</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.1. เตรียมข้อมูล</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">10.2. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">10.2.1. การคำนวณ Recency</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">10.2.2. การคำนวณ Frequency</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">10.2.3. การคำนวณ Monetary value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.2.4. คุณลักษณะ RFM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1. อ่านข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.2. เตรียมข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">9.3. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">9.3.1. การคำนวณ Recency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">9.3.2. การคำนวณ Frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">9.3.3. การคำนวณ Monetary value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.3.4. คุณลักษณะ RFM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">10.3. Standardization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">9.4. Standardization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">9.5. K-Means Clustering</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">11. K-Means Clustering</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -435,13 +429,12 @@ document.write(`
 </tr>
 </tbody>
 </table>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1><span class="section-number">10. </span>อ่านข้อมูล<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2><span class="section-number">9.1. </span>อ่านข้อมูล<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>ก่อนอื่น อ่านข้อมูลและทำการแปลงชนิดข้อมูลให้เหมาะสม</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>-c<span class="w"> </span>-q<span class="w"> </span>https://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx<span class="w"> </span>-O<span class="w"> </span>data.xlsx
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>-c<span class="w"> </span>-q<span class="w"> </span>https://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx<span class="w"> </span>-O<span class="w"> </span>online_retail.xlsx
 </pre></div>
 </div>
 </div>
@@ -450,125 +443,147 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;online_retail.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">BadZipFile</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;online_retail.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Online Retail&#39;</span><span class="p">)</span>  <span class="c1"># การโหลดค่อนข้างช้า เพราะไฟล์มีขนาดใหญ่มาก</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:504,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">503</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">--&gt; </span><span class="mi">504</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span>         <span class="n">io</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:517,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">511</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">512</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">514</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">516</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">517</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>         <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span>         <span class="n">keep_default_na</span><span class="o">=</span><span class="n">keep_default_na</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span>         <span class="n">na_filter</span><span class="o">=</span><span class="n">na_filter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span>         <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">537</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>     <span class="c1"># make sure to close opened file handles</span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span>     <span class="k">if</span> <span class="n">should_close</span><span class="p">:</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:1580,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options, engine_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1577</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
-<span class="g g-Whitespace">   </span><span class="mi">1578</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">storage_options</span>
-<span class="ne">-&gt; </span><span class="mi">1580</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engines</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span>
-<span class="g g-Whitespace">   </span><span class="mi">1581</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_io</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1582</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1583</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1584</span> <span class="p">)</span>
-
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:553,</span> in <span class="ni">OpenpyxlReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span><span class="sd"> Reader using openpyxl engine.</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="sd"> </span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:1629,</span> in <span class="ni">ExcelFile.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, converters, true_values, false_values, skiprows, nrows, na_values, parse_dates, date_parser, date_format, thousands, comment, skipfooter, dtype_backend, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span> <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="n">sheet_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1609</span>     <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1611</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1612</span><span class="sd">     Parse specified sheet(s) into a DataFrame.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1613</span><span class="sd"> </span>
 <span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span><span class="sd">     Arbitrary keyword arguments passed to excel engine.</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">552</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">553</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span>     <span class="n">filepath_or_buffer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">555</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">556</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">557</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1627</span><span class="sd">     &gt;&gt;&gt; file.parse()  # doctest: +SKIP</span>
+<span class="g g-Whitespace">   </span><span class="mi">1628</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1629</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1630</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1631</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1633</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1634</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1635</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1636</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1637</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1638</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1639</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1640</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1641</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1642</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1643</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1644</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1645</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1646</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span>         <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1649</span>     <span class="p">)</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:582,</span> in <span class="ni">BaseExcelReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">580</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">581</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">582</span>     <span class="bp">self</span><span class="o">.</span><span class="n">book</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span><span class="p">,</span> <span class="n">engine_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">583</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_base.py:793,</span> in <span class="ni">BaseExcelReader.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, dtype, true_values, false_values, skiprows, nrows, na_values, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, dtype_backend, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_by_index</span><span class="p">(</span><span class="n">asheetname</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span> <span class="n">file_rows_needed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_rows</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">index_col</span><span class="p">,</span> <span class="n">skiprows</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">793</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_data</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">file_rows_needed</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="c1"># pyxlsb opens two TemporaryFiles</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">sheet</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:570,</span> in <span class="ni">OpenpyxlReader.load_workbook</span><span class="nt">(self, filepath_or_buffer, engine_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">def</span> <span class="nf">load_workbook</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">filepath_or_buffer</span><span class="p">:</span> <span class="n">FilePath</span> <span class="o">|</span> <span class="n">ReadBuffer</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">engine_kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Workbook</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">load_workbook</span>
-<span class="ne">--&gt; </span><span class="mi">570</span>     <span class="k">return</span> <span class="n">load_workbook</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="n">filepath_or_buffer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span>         <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span>         <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span>         <span class="n">keep_links</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span>         <span class="o">**</span><span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">576</span>     <span class="p">)</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/pandas/io/excel/_openpyxl.py:616,</span> in <span class="ni">OpenpyxlReader.get_sheet_data</span><span class="nt">(self, sheet, file_rows_needed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Scalar</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span> <span class="n">last_row_with_data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">616</span> <span class="k">for</span> <span class="n">row_number</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span>     <span class="n">converted_row</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span>     <span class="k">while</span> <span class="n">converted_row</span> <span class="ow">and</span> <span class="n">converted_row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>         <span class="c1"># trim trailing empty elements</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:346,</span> in <span class="ni">load_workbook</span><span class="nt">(filename, read_only, keep_vba, data_only, keep_links, rich_text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Open the given filename and return the workbook</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span><span class="sd"> :param filename: the path to open or a file-like object</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">ExcelReader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="p">,</span> <span class="n">keep_vba</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span>                      <span class="n">data_only</span><span class="p">,</span> <span class="n">keep_links</span><span class="p">,</span> <span class="n">rich_text</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">346</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span> <span class="k">return</span> <span class="n">reader</span><span class="o">.</span><span class="n">wb</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_read_only.py:81,</span> in <span class="ni">ReadOnlyWorksheet._cells_by_row</span><span class="nt">(self, min_col, min_row, max_col, max_row, values_only)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="n">src</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_source</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">WorkSheetParser</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_strings</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>                          <span class="n">data_only</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">data_only</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>                          <span class="n">date_formats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">_date_formats</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">81</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="k">if</span> <span class="n">max_row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="n">max_row</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>         <span class="k">break</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:287,</span> in <span class="ni">ExcelReader.read</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;read manifest&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">287</span>     <span class="bp">self</span><span class="o">.</span><span class="n">read_manifest</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span>     <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;read strings&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="bp">self</span><span class="o">.</span><span class="n">read_strings</span><span class="p">()</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:167,</span> in <span class="ni">WorkSheetParser.parse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="n">element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span> <span class="k">elif</span> <span class="n">tag_name</span> <span class="o">==</span> <span class="n">ROW_TAG</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">167</span>     <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_row</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">yield</span> <span class="n">row</span>
 
-<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/reader/excel.py:134,</span> in <span class="ni">ExcelReader.read_manifest</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="k">def</span> <span class="nf">read_manifest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">134</span>     <span class="n">src</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ARC_CONTENT_TYPES</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="n">root</span> <span class="o">=</span> <span class="n">fromstring</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="bp">self</span><span class="o">.</span><span class="n">package</span> <span class="o">=</span> <span class="n">Manifest</span><span class="o">.</span><span class="n">from_tree</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:303,</span> in <span class="ni">WorkSheetParser.parse_row</span><span class="nt">(self, row)</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="k">if</span> <span class="n">keys</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;spans&#39;</span><span class="p">}:</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="c1"># don&#39;t create dimension objects unless they have relevant information</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="bp">self</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">)]</span> <span class="o">=</span> <span class="n">attrs</span>
+<span class="ne">--&gt; </span><span class="mi">303</span> <span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_cell</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">,</span> <span class="n">cells</span>
 
-<span class="nn">File /usr/lib/python3.10/zipfile.py:1476,</span> in <span class="ni">ZipFile.read</span><span class="nt">(self, name, pwd)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return file bytes for name.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1475</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1476</span>     <span class="k">return</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:303,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="k">if</span> <span class="n">keys</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;spans&#39;</span><span class="p">}:</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="c1"># don&#39;t create dimension objects unless they have relevant information</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="bp">self</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">)]</span> <span class="o">=</span> <span class="n">attrs</span>
+<span class="ne">--&gt; </span><span class="mi">303</span> <span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_cell</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_counter</span><span class="p">,</span> <span class="n">cells</span>
 
-<span class="nn">File /usr/lib/python3.10/zipfile.py:911,</span> in <span class="ni">ZipExtFile.read</span><span class="nt">(self, n)</span>
-<span class="g g-Whitespace">    </span><span class="mi">909</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span>     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">buf</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_N</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span>     <span class="k">return</span> <span class="n">buf</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span> <span class="n">end</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:202,</span> in <span class="ni">WorkSheetParser.parse_cell</span><span class="nt">(self, element)</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="n">VALUE_TAG</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">if</span> <span class="n">coordinate</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">coordinate_to_tuple</span><span class="p">(</span><span class="n">coordinate</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">col_counter</span> <span class="o">=</span> <span class="n">column</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">else</span><span class="p">:</span>
 
-<span class="nn">File /usr/lib/python3.10/zipfile.py:1015,</span> in <span class="ni">ZipExtFile._read1</span><span class="nt">(self, n)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">-&gt; </span><span class="mi">1015</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_crc</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="k">return</span> <span class="n">data</span>
+<span class="nn">File ~/269382/.venv/lib/python3.10/site-packages/openpyxl/utils/cell.py:202,</span> in <span class="ni">coordinate_to_tuple</span><span class="nt">(coordinate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="n">col</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[:</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="n">row</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="n">idx</span><span class="p">:]</span>
+<span class="ne">--&gt; </span><span class="mi">202</span> <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">_COL_STRING_CACHE</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
 
-<span class="nn">File /usr/lib/python3.10/zipfile.py:943,</span> in <span class="ni">ZipExtFile._update_crc</span><span class="nt">(self, newdata)</span>
-<span class="g g-Whitespace">    </span><span class="mi">941</span> <span class="c1"># Check the CRC if we&#39;re at the end of the file</span>
-<span class="g g-Whitespace">    </span><span class="mi">942</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_crc</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expected_crc</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">943</span>     <span class="k">raise</span> <span class="n">BadZipFile</span><span class="p">(</span><span class="s2">&quot;Bad CRC-32 for file </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-<span class="ne">BadZipFile</span>: Bad CRC-32 for file &#39;[Content_Types].xml&#39;
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -942,8 +957,9 @@ memory usage: 33.1 MB
 </div>
 </div>
 </div>
+</section>
 <section id="id3">
-<h2><span class="section-number">10.1. </span>เตรียมข้อมูล<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>เตรียมข้อมูล<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>ข้อมูล Online Retail เป็นข้อมูลที่ยังไม่ได้ทำความสะอาดดีนัก ซึ่งในทางปฏิบัติจำเป็นจะต้องทำ Exploratory Data Analysis ก่อน เพื่อทำความเข้าใจข้อมูล อย่างไรก็ตาม จะขอข้ามขั้นตอนนั้น เพราะถือว่าได้เคยทำไปแล้วในคาบก่อน ๆ ดังนั้น ในส่วนของการเตรียมข้อมูล จะกระทำตามรายการต่อไปนี้</p>
 <ol class="arabic simple">
 <li><p>เอาข้อมูลเฉพาะคำสั่งซื้อที่มาจากอังกฤษ (United Kingdom) เพราะพบว่าคำสั่งซื้อส่วนมากมาจากที่นี่ นอกจากนี้ พฤติกรรมของลูกค้าแต่ละประเทศอาจต่างกัน ดังนั้นการเลือกสร้างโมเดลเฉพาะของอังกฤษ ก็สมเหตุสมผล</p></li>
@@ -961,7 +977,7 @@ memory usage: 33.1 MB
 </div>
 </section>
 <section id="rfm">
-<h2><span class="section-number">10.2. </span>การคำนวณค่า RFM จากข้อมูล<a class="headerlink" href="#rfm" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>การคำนวณค่า RFM จากข้อมูล<a class="headerlink" href="#rfm" title="Permalink to this heading">#</a></h2>
 <p>ก่อนอื่น RFM คืออะไร?</p>
 <p>RFM เป็นค่า 3 ค่าที่อธิบายคุณลักษณะของลูกค้า ซึ่งมีค่าดังนี้</p>
 <ol class="arabic simple">
@@ -979,7 +995,7 @@ memory usage: 33.1 MB
 </div>
 </div>
 <section id="recency">
-<h3><span class="section-number">10.2.1. </span>การคำนวณ Recency<a class="headerlink" href="#recency" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.1. </span>การคำนวณ Recency<a class="headerlink" href="#recency" title="Permalink to this heading">#</a></h3>
 <p>พิจารณาจากคอลัมน์ <code class="docutils literal notranslate"><span class="pre">InvoiceDate</span></code> ซึ่งเป็นตัวแปร DateTime อยู่แล้ว โดยจะคำนวณผลต่างระหว่างวันที่ล่าสุดในชุดข้อมูล กับ <code class="docutils literal notranslate"><span class="pre">InvoiceDate</span></code> ล่าสุดของลูกค้าแต่ละคน</p>
 <p>โดยผลลัพธ์จะเก็บเป็นจำนวนวัน และหากจำนวนเกิน 365 วัน จะให้ถือเป็นค่า R = 365</p>
 <div class="cell docutils container">
@@ -1040,7 +1056,7 @@ Name: Recency, Length: 3950, dtype: int64
 </div>
 </section>
 <section id="frequency">
-<h3><span class="section-number">10.2.2. </span>การคำนวณ Frequency<a class="headerlink" href="#frequency" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.2. </span>การคำนวณ Frequency<a class="headerlink" href="#frequency" title="Permalink to this heading">#</a></h3>
 <p>ในที่นี้ จะประเมินความถี่ของการที่ลูกค้ามีต่อร้านขายของออนไลน์จากจำนวน Invoice ที่เกิดขึ้นของลูกค้าคนหนึ่ง โดยให้คะแนน 0 ถึง 10</p>
 <ul class="simple">
 <li><p>ถ้าจำนวน Invoice น้อยกว่า 10 ก็จะให้คะแนนเท่ากับจำนวน Invoice</p></li>
@@ -1076,7 +1092,7 @@ Name: Frequency, Length: 3950, dtype: int64
 </div>
 </section>
 <section id="monetary-value">
-<h3><span class="section-number">10.2.3. </span>การคำนวณ Monetary value<a class="headerlink" href="#monetary-value" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.3. </span>การคำนวณ Monetary value<a class="headerlink" href="#monetary-value" title="Permalink to this heading">#</a></h3>
 <p>จำนวนเงินรวมที่ลูกค้าจ่ายเพื่อซื้อสินค้า โดยปกติจะต้องกำหนดกรอบเวลาของการประเมินมูลค่าให้ชัดเจน เช่นไม่เกิน 1 ปี เป็นต้น แต่เพื่อความง่าย จะคำนวณ Monetary value จากยอดรวมทั้งหมดของลูกค้าแต่ละคนในชุดข้อมูลที่มี (เนื่องจากข้อมูลเรามีย้อนหลังไม่นาน)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1144,7 +1160,7 @@ Name: Monetary, dtype: float64
 </div>
 </section>
 <section id="id4">
-<h3><span class="section-number">10.2.4. </span>คุณลักษณะ RFM<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.4. </span>คุณลักษณะ RFM<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>จากค่า R, F และ M ที่คำนวณได้ก่อนหน้า เราจะนำมารวมกันเป็น DataFrame ดังนี้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1492,7 +1508,7 @@ dtype: int64
 </section>
 </section>
 <section id="standardization">
-<h2><span class="section-number">10.3. </span>Standardization<a class="headerlink" href="#standardization" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.4. </span>Standardization<a class="headerlink" href="#standardization" title="Permalink to this heading">#</a></h2>
 <p>ในขั้นตอนต่อไป เป็นขั้นตอนการ Standardize ค่า RFM ซึ่งถือเป็นคุณลักษณะ 3 คุณลักษณะ (feature) ที่เราจะใช้เทรนโมเดล</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1821,9 +1837,8 @@ dtype: int64
 </div></div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
-<h1><span class="section-number">11. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h1>
+<section id="k-means-clustering">
+<h2><span class="section-number">9.5. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h2>
 <p>จากข้อมูลที่เตรียมได้จากกระบวนการที่ผ่านมา จะนำไปจัดกลุ่ม (clustering) ด้วยวิธีการ K-Means clustering ซึ่งหลักการทำงานศึกษาได้จากสไลด์ต่อไปนี้ (<a class="reference external" href="https://docs.google.com/presentation/d/1LC-R_n-aIEvvhtg7WUpbi-rNul1wV-Tc7qdGypNtnZM/edit?usp=sharing">ลิงค์</a>)</p>
 <p>K-Means clustering เป็นโมเดลที่แตกต่างจากโมเดล Linear Regression, Logistic Regression และ Decision Tree Classifier ในแง่ที่ว่า เราสอนโมเดล K-Means โดยไม่ได้บอกเป้าหมาย (target) ที่ถูกต้องให้กับโมเดล ความแตกต่างในแง่นี้ จึงมีการจัดประเภทของโมเดล เป็น 2 ประเภท ดังนี้</p>
 <ol class="arabic simple">
@@ -2551,13 +2566,13 @@ if (outputEl) {{
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p>0 &lt; R ≤ 60</p></td>
-<td class="text-left"><p>2 month</p></td>
+<td class="text-left"><p>2 months</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>60 &lt; R ≤ 180</p></td>
-<td class="text-left"><p>6 month</p></td>
+<td class="text-left"><p>6 months</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>60 &lt; R ≤ ∞</p></td>
-<td class="text-left"><p>&gt;6 month</p></td>
+<tr class="row-even"><td class="text-left"><p>180 &lt; R ≤ ∞</p></td>
+<td class="text-left"><p>&gt;6 months</p></td>
 </tr>
 </tbody>
 </table>
@@ -2566,7 +2581,7 @@ if (outputEl) {{
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">cluster_summary</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span>
                               <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span>  <span class="c1"># np.inf คือค่า Infinity</span>
-                              <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2 month&#39;</span><span class="p">,</span> <span class="s1">&#39;6 months&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;6 months&#39;</span><span class="p">])</span>
+                              <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2 months&#39;</span><span class="p">,</span> <span class="s1">&#39;6 months&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;6 months&#39;</span><span class="p">])</span>
 <span class="n">cluster_summary</span>
 </pre></div>
 </div>
@@ -3196,6 +3211,7 @@ if (outputEl) {{
 <div><p><strong>Note:</strong> บทความวิจัยที่ใช้ RFM ในปัญหา Customer segmentation ได้แก่ “Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining” ดูที่ <a class="reference external" href="https://link.springer.com/article/10.1057/dbm.2012.17">Link</a></p>
 </div></blockquote>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3260,22 +3276,18 @@ if (outputEl) {{
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10. อ่านข้อมูล</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.1. เตรียมข้อมูล</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">10.2. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">10.2.1. การคำนวณ Recency</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">10.2.2. การคำนวณ Frequency</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">10.2.3. การคำนวณ Monetary value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.2.4. คุณลักษณะ RFM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1. อ่านข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.2. เตรียมข้อมูล</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">9.3. การคำนวณค่า RFM จากข้อมูล</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recency">9.3.1. การคำนวณ Recency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">9.3.2. การคำนวณ Frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-value">9.3.3. การคำนวณ Monetary value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.3.4. คุณลักษณะ RFM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">10.3. Standardization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">9.4. Standardization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">9.5. K-Means Clustering</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">11. K-Means Clustering</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

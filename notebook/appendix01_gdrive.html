@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/appendix01_gdrive';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="9. ปัญหาการจัดกลุ่มลูกค้า" href="lecture07.html" />
+    <link rel="prev" title="10. แบบฝึกหัด: การตรวจจับการฉ้อโกงบัตรเครดิต" href="exercise01.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,6 +179,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture06-1.html">7. การแปลงข้อมูล categorical และ ordinal ให้เป็นตัวเลข</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture06-2.html">8. การตัดสินใจด้วยต้นไม้</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture07.html">9. ปัญหาการจัดกลุ่มลูกค้า</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercise01.html">10. แบบฝึกหัด: การตรวจจับการฉ้อโกงบัตรเครดิต</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">ภาคผนวก</span></p>
 <ul class="current nav bd-sidenav">
@@ -421,7 +422,9 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: gdown==4.6.3 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (4.6.3)
 Requirement already satisfied: filelock in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (3.13.1)
-Requirement already satisfied: requests[socks] in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (2.31.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests[socks] in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (2.31.0)
 Requirement already satisfied: six in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (1.16.0)
 Requirement already satisfied: tqdm in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (4.66.1)
 Requirement already satisfied: beautifulsoup4 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from gdown==4.6.3) (4.12.2)
@@ -431,7 +434,9 @@ Requirement already satisfied: soupsieve&gt;1.2 in /home/kasemsit/269382/.venv/l
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (3.6)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (2.1.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (2023.11.17)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: certifi&gt;=2017.4.17 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (2023.11.17)
 Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /home/kasemsit/269382/.venv/lib/python3.10/site-packages (from requests[socks]-&gt;gdown==4.6.3) (1.7.1)
 </pre></div>
 </div>
@@ -472,11 +477,8 @@ To: /home/kasemsit/269382/notebook/myapple_1.csv
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                | 0.00/735k [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|████████████████████████████▌           | 524k/735k [00:00&lt;00:00, 1.38MB/s]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████| 735k/735k [00:00&lt;00:00, 1.46MB/s]
-100%|████████████████████████████████████████| 735k/735k [00:00&lt;00:00, 1.44MB/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|████████████████████████████▌           | 524k/735k [00:00&lt;00:00, 2.61MB/s]
+100%|████████████████████████████████████████| 735k/735k [00:00&lt;00:00, 3.24MB/s]
 </pre></div>
 </div>
 </div>
@@ -608,10 +610,10 @@ To: /home/kasemsit/269382/notebook/myapple_2.csv
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                              | 0.00/735k [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|█████████████████████████████████████████████████████████████▍                        | 524k/735k [00:00&lt;00:00, 1.24MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|█████████████████████████████████████████████████████████████▍                        | 524k/735k [00:00&lt;00:00, 1.70MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████| 735k/735k [00:00&lt;00:00, 1.51MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████| 735k/735k [00:00&lt;00:00, 2.22MB/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -737,12 +739,12 @@ To: /home/kasemsit/269382/notebook/myapple_2.csv
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="lecture07.html"
+       href="exercise01.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>ปัญหาการจัดกลุ่มลูกค้า</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>แบบฝึกหัด: การตรวจจับการฉ้อโกงบัตรเครดิต</p>
       </div>
     </a>
 </div>

@@ -2,6 +2,7 @@ build:
 	jupyter-book build --all ./
 clean:
 	rm -f notebook/data.xlsx 
+	rm -f notebook/online_retail.xlsx 
 	rm -f notebook/ggez.csv 
 	rm -f notebook/lnwzaa55+.csv	
 	rm -f notebook/iris.zip 	
